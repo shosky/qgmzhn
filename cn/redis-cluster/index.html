@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag (contains Google-Analytics、Baidu-Tongji)-->
+<head>
+  <!-- Google Analytics -->
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-xxxxxx-xx"></script>
+    <script type="text/javascript">
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'UA-xxxxxx-xx');
+    </script>
+  
+
+  <!-- Baidu Tongji -->
+  
+    <script type="text/javascript">
+      // Originial
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  <!-- Baidu Push -->
+  
+    <script>
+      (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+      })();
+    </script>
+  
+
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+  <meta name="google-site-verification" content="lxDfCplOZbIzjhG34NuQBgu2gdyRlAtMB4utP5AgEBc"/>
+  <meta name="baidu-site-verification" content="PpzM9WxOJU"/>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="不循规蹈矩，不甘愿平庸，不随波逐流"/>
+  <meta name="keyword" content="Leo的Blog"/>
+  <link rel="shortcut icon" href="/img/avatar/roguerabbit.jpg"/>
+
+  <!-- Place this tag in your head or just before your close body tag. -->
+  <script async="async" defer="defer" src="https://buttons.github.io/buttons.js"></script>
+
+  
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/beantech.min.css"/>
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css"/>
+    <link rel="stylesheet" href="/css/widget.css"/>
+    <link rel="stylesheet" href="/css/rocket.css"/>
+    <link rel="stylesheet" href="/css/signature.css"/>
+    <link rel="stylesheet" href="/css/catalog.css"/>
+    <link rel="stylesheet" href="/css/livemylife.css"/>
+
+    
+
+    
+      <!-- top start (article top hot config) -->
+      <link rel="stylesheet" href="/css/top.css"/>
+      <!-- top end -->
+    
+
+    
+      <!-- ThemeColor start -->
+      <link rel="stylesheet" href="/css/scroll.css"/>
+      <!-- ThemeColor end -->
+    
+
+    
+      <!-- viewer start (Picture preview) -->
+      <link rel="stylesheet" href="/css/viewer.min.css"/>
+      <!-- viewer end -->
+    
+
+    
+      <!-- Search start -->
+      <link rel="stylesheet" href="/css/search.css"/>
+      <!-- Search end -->
+    
+
+    
+
+    
+
+    
+      <!-- gitalk start -->
+      <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css"> -->
+      <link rel="stylesheet" href="/css/gitalk.css"/>
+      <!-- gitalk end -->
+    
+  
+
+  <!-- Custom Fonts -->
+  <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+  <!-- Hux change font-awesome CDN to qiniu -->
+  <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" type="text/css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Hux Delete, sad but pending in China <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'> <link
+  href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/ css'> -->
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
+
+  <!-- ga & ba script hoook -->
+  <link rel="canonical" href="https://qgmzhn.com/cn/redis-cluster/">
+  <title>
+    
+      手把手教你搭建Redis集群 - Leo的Blog
+    
+  </title>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+
+	<body ontouchstart="" class="body--light">
+
+
+		<!-- ThemeColor -->
+		
+
+		<!-- Gitter -->
+		
+
+		<!-- Navigation (contains search)-->
+		<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header page-scroll">
+      <button type="button" class="navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Leo的部落格</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <!-- Known Issue, found by Hux: <nav>'s height woule be hold on by its content. so, when navbar scale out, the <nav> will cover tags. also mask any touch event of tags, unfortunately. -->
+    <div id="huxblog_navbar">
+      <div class="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="/">首页</a>
+          </li>
+
+          
+          
+          
+          
+          <li>
+            <a href="/about/">
+              
+              关于
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/archive/">
+              
+              归档
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/categories/">
+              
+              分类
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/tags/">
+              
+              标签
+              
+              
+            </a>
+          </li>
+          
+          
+
+          
+          <li>
+            <a class="popup-trigger">
+              <span class="search-icon"></span>搜索</a>
+          </li>
+          
+
+          <!-- LangSelect -->
+          
+        </ul>
+      </div>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container -->
+</nav>
+<!-- progress -->
+<div id="progress">
+  <div class="line" style="width: 0%;"></div>
+</div>
+
+<script>
+  // Drop Bootstarp low-performance Navbar Use customize navbar with high-quality material design animation in high-perf jank-free CSS3 implementation
+  var $body = document.body;
+  var $toggle = document.querySelector('.navbar-toggle');
+  var $navbar = document.querySelector('#huxblog_navbar');
+  var $collapse = document.querySelector('.navbar-collapse');
+
+  $toggle.addEventListener('click', handleMagic)
+
+  function handleMagic(e) {
+    if ($navbar.className.indexOf('in') > 0) {
+      // CLOSE
+      $navbar.className = " ";
+      // wait until animation end.
+      setTimeout(function() {
+        // prevent frequently toggle
+        if ($navbar.className.indexOf('in') < 0) {
+          $collapse.style.height = "0px"
+        }
+      }, 400)
+    } else {
+      // OPEN
+      $collapse.style.height = "auto"
+      $navbar.className += " in";
+    }
+  }
+</script>
+
+
+		<!-- Post Header (contains intro-header、signature、wordcount、busuanzi、waveoverlay) -->
+		<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+
+  <style type="text/css">
+    .body--light {
+      /* intro-header */
+      --intro-header-background-image-url-home: url('/https://cdn.wangxiaodu.com/morning.jpeg');
+      --intro-header-background-image-url-post: url('/img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-page: url('//img/header_img/lml_bg.jpg');
+    }
+    .body--dark {
+      --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/https://cdn.wangxiaodu.com/morning.jpeg');
+      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('//img/header_img/lml_bg.jpg');
+    }
+
+    header.intro-header {
+       /*post*/
+        background-image: var(--intro-header-background-image-url-post);
+        /* background-image: url('/img/header_img/lml_bg.jpg'); */
+      
+    }
+
+    
+      #signature {/*signature*/
+        background-image: url('/img/signature/vincent-white.png');
+      }
+    
+  </style>
+
+
+
+
+
+<header class="intro-header">
+  <!-- Signature -->
+  <div id="signature">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+          
+          <div class="post-heading">
+            <div class="tags">
+              
+              <a class="tag" href="/tags/#Redis" title="Redis">Redis</a>
+              
+              <a class="tag" href="/tags/#Redis-Cluster" title="Redis-Cluster">Redis-Cluster</a>
+              
+              <a class="tag" href="/tags/#Codis" title="Codis">Codis</a>
+              
+              <a class="tag" href="/tags/#Sentinel" title="Sentinel">Sentinel</a>
+              
+            </div>
+            <h1>手把手教你搭建Redis集群</h1>
+            <h2 class="subheading">从主从复制到哨兵机制,最后介绍了服务端代理与RedisCluster</h2>
+            <span class="meta">
+              发表者 Leo on
+              2021-09-15
+            </span>
+
+
+            
+            <!-- WordCount start -->
+            <div class="blank_box"></div>
+            <span class="meta">
+              预计阅读时间 <span class="post-count">31</span> 分钟
+            </span>
+            <div class="blank_box"></div>
+            <span class="meta">
+              共计 <span class="post-count">7.4k</span> 字
+            </span>
+            <div class="blank_box"></div>
+            <!-- WordCount end -->
+            
+            
+
+
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+</header>
+
+
+
+		<!-- Main Content (Post contains
+	Pager、
+	tip、
+	socialshare、
+	gitalk、gitment、disqus-comment、
+	Catalog、
+	Sidebar、
+	Featured-Tags、
+	Friends Blog、
+	anchorjs、
+	) -->
+		<!-- Modify by Yu-Hsuan Yen -->
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <!-- Post Container -->
+      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
+
+        <p><a name="Obecz"></a></p>
+<h1>概述</h1>
+<p>​<br>
+要想实现集群化，就必须部署多个主节点，每个主节点还有可能有多个从节点，以这样的部署结构组成的集群，才能更好地承担更大的流量请求和存储更多的数据。<br>
+​<br>
+可以承担更大的流量是集群最基础的功能，一般集群化方案还包括了上面提到了数据持久化、数据复制、故障自动恢复功能，利用这些技术，来保证集群的高性能和高可用。</p>
+<p>另外，优秀的集群化方案还实现了<strong>在线水平扩容</strong>功能，当节点数量不够时，可以动态增加新的节点来提升整个集群的性能，而且这个过程是在线完成的，<strong>业务无感知</strong>。<br>
+​<br>
+<strong>支持高可用集群方案包括:</strong></p>
+<ol>
+<li>主从复制架构</li>
+<li>Sentinel(哨兵模式)</li>
+</ol>
+<p><strong>支持数据分片集群方案包括:</strong></p>
+<ol>
+<li>客户端分片</li>
+<li>Proxy代理</li>
+<li>Redis Cluster</li>
+<li>公有云Redis集群</li>
+</ol>
+<p><a name="FmP9G"></a></p>
+<h1>安装Redis</h1>
+<p>本文基于Centos7.6讲解，Redis基于版本5.0.5部署。</p>
+<p><strong>安装一些依赖:</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">yum install -y net-tools</span><br><span class="line"></span><br><span class="line">yum install gcc cmake -y</span><br><span class="line"></span><br><span class="line">yum -y  install centos-release-scl scl-utils-build</span><br><span class="line"></span><br><span class="line">yum -y install devtoolset-9-gcc devtoolset-9-gcc-c++ devtoolset-9-binutils</span><br><span class="line"></span><br><span class="line">scl enable devtoolset-9 bash</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>关闭SELinux：</strong></p>
+<ol>
+<li>临时关闭（不用重启机器）</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setenforce 0  ##设置SELinux成为permissive模式</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>修改配置文件需要重启机器</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/selinux/config </span><br><span class="line">SELINUX=disabled</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+<p><strong>安装Redis</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">yum install -y wget</span><br><span class="line"></span><br><span class="line">cd /opt </span><br><span class="line"></span><br><span class="line">wget http://download.redis.io/releases/redis-5.0.5.tar.gz</span><br><span class="line"></span><br><span class="line">tar xzf redis-5.0.5.tar.gz -C /opt</span><br><span class="line"></span><br><span class="line">rename redis-5.0.5 redis redis-5.0.5</span><br><span class="line"></span><br><span class="line">cd /opt/redis</span><br><span class="line"></span><br><span class="line">make </span><br><span class="line"></span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<p><strong>运行Redis</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">防火墙开放6379端口</span></span><br><span class="line">firewall-cmd --zone=public --add-port=6379/tcp --permanent</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">更新防火墙规则</span></span><br><span class="line">firewall-cmd --reload</span><br><span class="line"></span><br><span class="line">cd /usr/local/bin</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">启动Redis</span></span><br><span class="line">./redis-server /opt/redis/redis.conf</span><br></pre></td></tr></table></figure>
+<p>启动后查看redis进程是否启动:<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631624147228-0a4f9f3c-98f5-4a90-aa14-7a0c1dcdc76c.png#clientId=ua770c450-f68b-4&amp;from=paste&amp;height=51&amp;id=u0c2ec0a6&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=102&amp;originWidth=1132&amp;originalType=binary&amp;ratio=1&amp;size=24005&amp;status=done&amp;style=none&amp;taskId=u0ed762c3-5e99-44aa-9ef1-7219316eee7&amp;width=566" alt="image.png"><br>
+<a name="CK3k2"></a><br>
+<a name="fds3Z"></a></p>
+<h1>Redis高可用方案</h1>
+<p><a name="bIusI"></a></p>
+<h2 id="Redis主从架构">Redis主从架构</h2>
+<p>实现步骤分两步:</p>
+<ol>
+<li>准备主从配置文件</li>
+<li>先启动master再依次启动slave</li>
+</ol>
+<p><strong>集群规划</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>节点</strong></th>
+<th><strong>ip</strong></th>
+<th><strong>端口</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>master</td>
+<td>192.168.197.128</td>
+<td>6379</td>
+</tr>
+<tr>
+<td>slave1</td>
+<td>192.168.197.129</td>
+<td>6379</td>
+</tr>
+<tr>
+<td>slave2</td>
+<td>192.168.197.130</td>
+<td>6379</td>
+</tr>
+</tbody>
+</table>
+<p><strong>配置文件</strong><br>
+master 192.168.197.128 redis.conf</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">绑定IP</span></span><br><span class="line">bind 0.0.0.0 </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">日志文件</span></span><br><span class="line">logfile &quot;/usr/redis/log/redis.log&quot; </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">后台运行</span></span><br><span class="line">daemonize yes </span><br></pre></td></tr></table></figure>
+<p>slave1 192.168.197.129 redis.conf</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">绑定IP</span></span><br><span class="line">bind 0.0.0.0 </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">日志文件</span></span><br><span class="line">logfile &quot;/usr/redis/log/redis.log&quot; </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">后台运行</span></span><br><span class="line">daemonize yes </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">主节点地址端口</span></span><br><span class="line">replicaof 192.168.197.128 6379 </span><br></pre></td></tr></table></figure>
+<p>slave2 192.168.197.130 redis.conf</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">绑定IP</span></span><br><span class="line">bind 0.0.0.0 </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">日志文件</span></span><br><span class="line">logfile &quot;/usr/redis/log/redis.log&quot; </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">后台运行</span></span><br><span class="line">daemonize yes </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">主节点地址端口</span></span><br><span class="line">replicaof 192.168.197.128 6379 </span><br></pre></td></tr></table></figure>
+<p><strong>启动Redis</strong><br>
+启动节点，依次查看节点信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/bin</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">启动redis</span></span><br><span class="line">./redis-server /opt/redis/redis.conf</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 进入客户端，查看复制信息</span></span><br><span class="line">./redis-cli </span><br><span class="line"></span><br><span class="line">info replication</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631669436340-87fb08fe-cb09-4344-a7bc-8e05f5f26e64.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=273&amp;id=u019cc33b&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=546&amp;originWidth=928&amp;originalType=binary&amp;ratio=1&amp;size=89703&amp;status=done&amp;style=none&amp;taskId=u28876f47-caca-4923-9a80-d26dfc03e0b&amp;width=464" alt="image.png"><br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631669487058-baf09876-d74f-47bc-b237-9fd65a5ad9b0.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=379&amp;id=u96f6f9a0&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=758&amp;originWidth=908&amp;originalType=binary&amp;ratio=1&amp;size=109198&amp;status=done&amp;style=none&amp;taskId=u750f10bc-900a-4d48-95f9-40ad495f7bc&amp;width=454" alt="image.png"></p>
+<p><strong>数据同步验证</strong><br>
+在master节点写入数据，在slave1/slave2可以查看到同步情况</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//master</span><br><span class="line">./redis-cli </span><br><span class="line">127.0.0.01:6379&gt; set hello world</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">//slave1</span><br><span class="line">./redis-cli </span><br><span class="line">127.0.0.01:6379&gt; get hello</span><br><span class="line">&quot;world&quot;</span><br><span class="line"></span><br><span class="line">//slave2</span><br><span class="line">./redis-cli </span><br><span class="line">127.0.0.01:6379&gt; get hello</span><br><span class="line">&quot;world&quot;</span><br></pre></td></tr></table></figure>
+<p>#master<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631669522658-7c58b35e-1d3b-4203-9b18-bd61ca89e9dd.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=57&amp;id=u95a8ed23&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=114&amp;originWidth=534&amp;originalType=binary&amp;ratio=1&amp;size=11480&amp;status=done&amp;style=none&amp;taskId=ub8392e13-61be-4b4c-9b99-b270a62bfe6&amp;width=267" alt="image.png"><br>
+#slave1<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631669578780-0b47c81e-e5d2-43ec-87d4-6d3e57345b19.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=64&amp;id=u11b17e16&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=128&amp;originWidth=524&amp;originalType=binary&amp;ratio=1&amp;size=10766&amp;status=done&amp;style=none&amp;taskId=u21c83e20-cbc6-447c-ae84-32675cbf599&amp;width=262" alt="image.png"><br>
+#slave2<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631669580672-333c99dd-d552-46b8-9cc0-b2df00f76734.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=64&amp;id=u3b5e5149&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=128&amp;originWidth=524&amp;originalType=binary&amp;ratio=1&amp;size=10766&amp;status=done&amp;style=none&amp;taskId=u08c9d1d7-0ce6-45d8-b1a3-673021787af&amp;width=262" alt="image.png"></p>
+<p><strong>注意:</strong></p>
+<ol>
+<li>从库只有读取的能力，不具备写入数据的能力，如果写入数据会报错误。</li>
+<li>第一个从库设置连接主库，第二从库可以设置连接第一个从库，第三个从库可以设置连接第二个从库，依次类推。</li>
+<li>减少主库连接的压力，还可以关掉主库的持久化功能，把持久化的功能交给从库进行处理</li>
+</ol>
+<p><a name="tqoeU"></a></p>
+<h2 id="Redis-Sentinel-哨兵模式">Redis Sentinel(哨兵模式)</h2>
+<p>因为Redis目前只支持主从复制备份，不支持主主复制，万一当主Redis挂了，就失去了写入数据能力，因为从Redis只能提供读服务，无法提供写服务。所以当主Redis挂了时，就得让从Redis升个官成为主Redis。<br>
+这就需要自动故障转移，Redis Sentinel就具备这个功能，当一个主Redis挂了时，Redis Sentinel可以将一个从Redis升级为主Redis，并对其他从Redis进行配置，让它们使用新的主Redis进行复制。<br>
+​</p>
+<blockquote>
+<p>需要注意的是：搭建sentinel最好有3台服务器。所以一开始推荐搭建准备好3台虚拟服务器。</p>
+</blockquote>
+<p><strong>Redis Sentinel主要功能</strong></p>
+<p>**监控：**哨兵不断的检查master和slave是否正常的运行。<br>
+​<br>
+**通知：**当监控的某台Redis实例发生问题时，可以通过API通知系统管理员和其他的应用程序。</p>
+<p>**自动故障转移：**当一个master没有在运行了，哨兵可以启动一个故障转移进程，将一个slave升级成为master，其他的slave被重新配置使用新的master，并且应用程序使用Redis服务端通知的新地址。</p>
+<p>在默认情况下，每个Sentinel节点会以每秒一次的频率对Redis节点和其它的Sentinel节点发送PING命令，并通过节点的回复来判断节点是否在线。<br>
+如果在down-after-millisecondes毫秒内，没有收到有效的回复，则会判定该节点为主观下线。<br>
+如果该节点为master，则该Sentinel节点会通过sentinel is-master-down-by-addr命令向其它sentinel节点询问对该节点的判断，如果超过个数的节点判定master不可达，则该sentinel节点会将master判断为客观下线。<br>
+这个时候，各个Sentinel会进行协商，选举出一个领头Sentinel，由该领头Sentinel对master节点进行故障转移操作。<br>
+​<br>
+故障转移包含如下三个操作：</p>
+<ol>
+<li>在所有的slave服务器中，挑选出一个slave，并将其转换为master。</li>
+<li>让其它slave服务器，改为复制新的master。</li>
+<li>将旧master设置为新master的slave，这样，当旧的master重新上线时，它会成为新master的slave。</li>
+</ol>
+<p><strong>master和slave同步过程</strong></p>
+<ol>
+<li>从节点主动向主节点发送同步请求</li>
+<li>主节点接收到从的消息后发送自己的runid和offset发送给从节点</li>
+<li>从节点保存主节点发送过来的runid和offset</li>
+<li>主节点后台执行RDB持久化，并将新写入的数据写入到缓冲区中</li>
+<li>主节点将RDB文件发送到从节点</li>
+<li>主节点在把RDB文件发送到从节点后，把buffer中的数据以redis协议格式发送到从节点</li>
+<li>从节点清空自己旧的数据</li>
+<li>从节点把主节点推送过来的RDB文件中的数据载入内存，再加载所有缓冲区中的内容完成全量同步</li>
+<li>全量同步完成后，如从节点需要继续同步增量数据的话，会先将自己的offset位置发送给主节点，主节点在收到后会根据从节点的offset，将从节点offset位置之后的数据发送回从节点，同时也将在缓冲区的数据也发送给从节点</li>
+</ol>
+<p><strong>集群规划</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>节点</strong></th>
+<th><strong>IP</strong></th>
+<th><strong>端口</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>master</td>
+<td>192.168.197.128</td>
+<td>6379</td>
+</tr>
+<tr>
+<td>slave1</td>
+<td>192.168.197.129</td>
+<td>6379</td>
+</tr>
+<tr>
+<td>slave1</td>
+<td>192.168.197.130</td>
+<td>6379</td>
+</tr>
+<tr>
+<td>master_sentinel</td>
+<td>192.168.197.128</td>
+<td>26379</td>
+</tr>
+<tr>
+<td>slave_sentinel</td>
+<td>192.168.197.129</td>
+<td>26379</td>
+</tr>
+<tr>
+<td>slave_sentinel</td>
+<td>192.168.197.130</td>
+<td>26379</td>
+</tr>
+</tbody>
+</table>
+<p><strong>哨兵配置</strong></p>
+<ol>
+<li>master和slave的配置与上面主从配置一样；</li>
+<li>sentinel实际上是一个特殊的redis服务器,有些redis指令支持,但很多指令并不支持.默认监听在26379/tcp端口；</li>
+<li>哨兵可以不和Redis服务器部署在一起，但一般部署在一起</li>
+</ol>
+<p>所有sentinel节点使用相同的以下示例的配置文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> master sentine.conf</span></span><br><span class="line">bind 0.0.0.0</span><br><span class="line">port 26379</span><br><span class="line">logfile &quot;/usr/redis/log/sentinel.log&quot;</span><br><span class="line">sentinel monitor mymaster 192.168.197.128 6379 2 #指定当前mymaster集群中master服务器的地址和端口,2代表必须2节点存活集群才正常工作</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> slave1 sentinel.conf</span></span><br><span class="line">bind 0.0.0.0</span><br><span class="line">port 26379</span><br><span class="line">logfile &quot;/usr/redis/log/sentinel.log&quot;</span><br><span class="line">sentinel monitor mymaster 192.168.197.128 6379 2 #指定当前mymaster集群中master服务器的地址和端口,2代表必须2节点存活集群才正常工作</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> slave2 sentinel.conf</span></span><br><span class="line">bind 0.0.0.0</span><br><span class="line">port 26379</span><br><span class="line">logfile &quot;/usr/redis/log/sentinel.log&quot;</span><br><span class="line">sentinel monitor mymaster 192.168.197.128 6379 2 #指定当前mymaster集群中master服务器的地址和端口,2代表必须2节点存活集群才正常工作</span><br></pre></td></tr></table></figure>
+<p><strong>启动哨兵</strong></p>
+<ol>
+<li>三台哨兵服务器需要在Master/Slave后启动</li>
+<li>启动Master/Slave后逐个启动Sentinel</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">3台Sentinel服务器都执行以下命令</span></span><br><span class="line">cd /usr/local/bin</span><br><span class="line">./redis-sentinel /opt/redis/sentinel.conf</span><br></pre></td></tr></table></figure>
+<p><strong>测试哨兵</strong><br>
+主从状态:<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631672309473-40c67f23-20bc-4f24-a8d5-e89af9896083.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=261&amp;id=u0fadcd45&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=522&amp;originWidth=1288&amp;originalType=binary&amp;ratio=1&amp;size=84968&amp;status=done&amp;style=none&amp;taskId=ue644aca0-61bc-44fe-a74b-8a76fdb1a4a&amp;width=644" alt="image.png"><br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631672332490-73bb60f1-2621-4699-8347-22ff13da4401.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=377&amp;id=uf2b17ed2&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=754&amp;originWidth=1304&amp;originalType=binary&amp;ratio=1&amp;size=112431&amp;status=done&amp;style=none&amp;taskId=u02e0c005-9e26-41d0-828d-047d8647a48&amp;width=652" alt="image.png"><br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631672354791-ba4b6103-e2fa-4a9a-b6a1-de57a0eda1fc.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=378&amp;id=uaa7bc00b&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=756&amp;originWidth=1316&amp;originalType=binary&amp;ratio=1&amp;size=111449&amp;status=done&amp;style=none&amp;taskId=u2f73ed74-10c5-42d7-9e58-dde53d39b85&amp;width=658" alt="image.png"></p>
+<p><strong>验证哨兵状态</strong><br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631673010107-927e873b-2f38-4832-bc9d-7cb88b8a81b4.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=102&amp;id=ufff2f9c2&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=204&amp;originWidth=1294&amp;originalType=binary&amp;ratio=1&amp;size=39322&amp;status=done&amp;style=none&amp;taskId=u7c5a267a-5252-4f99-bc11-742eacacfda&amp;width=647" alt="image.png"></p>
+<p><strong>模拟主节点下线</strong></p>
+<p>主节点下线<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631673059237-f255121e-f8bf-4b66-b9c9-1ae795d53161.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=117&amp;id=u8069fa15&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=234&amp;originWidth=1382&amp;originalType=binary&amp;ratio=1&amp;size=20583&amp;status=done&amp;style=none&amp;taskId=u48de9e70-758c-44b3-a402-0b429e6e5f9&amp;width=691" alt="image.png"><br>
+哨兵自动切换主节点<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631673157737-0656562c-4127-4904-9874-fcf4860acd0e.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=216&amp;id=ue692917b&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=432&amp;originWidth=2204&amp;originalType=binary&amp;ratio=1&amp;size=144017&amp;status=done&amp;style=none&amp;taskId=ua9f993f1-77bf-4439-9cdf-8a905b4bb14&amp;width=1102" alt="image.png"><br>
+重启之前主节点,加入集群后自动变为从节点<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631673372770-71961684-1153-463b-a153-16b5167ee707.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=270&amp;id=uhkiP&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=540&amp;originWidth=2202&amp;originalType=binary&amp;ratio=1&amp;size=168318&amp;status=done&amp;style=none&amp;taskId=ub20782ba-3f7a-4217-b953-191ae85c5a9&amp;width=1101" alt="image.png"><br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631673289900-816f72ec-1d4f-406c-96d7-58843bb4d4f9.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=380&amp;id=ue863c31a&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=760&amp;originWidth=1222&amp;originalType=binary&amp;ratio=1&amp;size=112997&amp;status=done&amp;style=none&amp;taskId=u3eeb52cc-8d26-4029-a366-969ec990aef&amp;width=611" alt="image.png"></p>
+<p><strong>登录sentinel查看状态</strong><br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631673451156-3e144582-ce5c-4584-8039-de0aa87d3552.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=177&amp;id=u6b2fefa5&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=354&amp;originWidth=1418&amp;originalType=binary&amp;ratio=1&amp;size=55777&amp;status=done&amp;style=none&amp;taskId=ud1c9fbee-0fb3-48ae-af4b-bc68ad6f7c3&amp;width=709" alt="image.png"><br>
+​<br>
+<strong>注意</strong></p>
+<ol>
+<li>之前有使用过主从复制启动后，需要删除dump.rdb</li>
+<li>使用哨兵模式必须是Redis2.8以上版本</li>
+<li>Redis Sentinel中的Sentinel节点个数应该为大于等于3且最好为奇数</li>
+<li>客户端初始化时连接的是Sentinel节点集合，不再是具体的Redis节点，但Sentinel只是配置中心不是代理</li>
+<li>Redis Sentinel 节点与普通redis 没有区别,要实现读写分离依赖于客户端程序</li>
+<li>redis 3.0 之前版本中,生产环境一般使用哨兵模式,但3.0后推出redis cluster功能后,可以支持更大规模的生产环境</li>
+</ol>
+<p><a name="cjJPZ"></a></p>
+<h1>Redis分片集群方案</h1>
+<p><a name="InfUh"></a></p>
+<h2 id="客户端分片">客户端分片</h2>
+<p>客户端分片主要是说，我们只需要部署多个Redis节点，具体如何使用这些节点，主要工作在客户端。</p>
+<p>客户端通过固定的Hash算法，针对不同的key计算对应的Hash值，然后对不同的Redis节点进行读写。<br>
+​<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631673607665-2ff9875e-3659-4bad-b548-73c496fb3953.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=370&amp;id=u2b2a43af&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=740&amp;originWidth=844&amp;originalType=binary&amp;ratio=1&amp;size=139738&amp;status=done&amp;style=none&amp;taskId=u9108f036-5d53-4e22-b2cd-677135660b9&amp;width=422" alt="image.png"><br>
+​</p>
+<p>客户端分片需要业务开发人员事先评估业务的<strong>请求量和数据量</strong>，然后让DBA部署足够的节点交给开发人员使用即可。<br>
+​<br>
+这个方案的优点是部署非常方便，业务需要多少个节点DBA直接部署交付即可，剩下的事情就需要业务开发人员根据节点数量来编写key的<strong>请求路由逻辑</strong>，制定一个规则，一般采用固定的Hash算法，把不同的key写入到不同的节点上，然后再根据这个规则进行数据读取。</p>
+<p>可见，它的缺点是业务开发人员<strong>使用Redis的成本较高</strong>，需要编写路由规则的代码来使用多个节点，而且如果事先对业务的数据量评估不准确，后期的<strong>扩容和迁移成本非常高</strong>，因为节点数量发生变更后，Hash算法对应的节点也就不再是之前的节点了。</p>
+<p>所以后来又衍生出了<strong>一致性哈希算法</strong>，就是为了解决当节点数量变更时，尽量减少数据的迁移和性能问题。<br>
+​<br>
+这种客户端分片的方案一般用于业务数据量比较稳定，后期不会有大幅度增长的业务场景下使用，只需要<strong>前期评估好业务数据量</strong>即可。</p>
+<p><a name="umpBC"></a></p>
+<h2 id="服务端Proxy模式">服务端Proxy模式</h2>
+<p>随着业务和技术的发展，人们越发觉得，当我需要使用Redis时，我们<strong>不想关心集群后面有多少个节点</strong>，我们希望我们使用的Redis是一个大集群，当我们的业务量增加时，这个大集群可以<strong>增加新的节点来解决容量不够用和性能问题</strong>。<br>
+​<br>
+这种方式就是<strong>服务端分片方案</strong>，客户端不需要关心集群后面有多少个Redis节点，只需要像使用一个Redis的方式去操作这个集群，这种方案将大大降低开发人员的使用成本，开发人员可以只需要关注业务逻辑即可，不需要关心Redis的资源问题。</p>
+<p>多个节点组成的集群，如何让开发人员像操作一个Redis时那样来使用呢？这就涉及到多个节点是如何组织起来提供服务的，一般我们会在客户端和服务端中间增加一个<strong>代理层</strong>，客户端只需要操作这个代理层，代理层实现了具体的请求转发规则，然后转发请求到后面的多个节点上，因此这种方式也叫做<strong>中心化方式的集群方案</strong>，Codis就是以这种方式实现的集群化方案。<br>
+​<br>
+<a name="fow4s"></a></p>
+<h3 id="Codis">Codis</h3>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631673783387-58f8fa85-c382-4c98-8dc4-5d88ff580f4d.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=420&amp;id=ucb8d241b&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=840&amp;originWidth=1768&amp;originalType=binary&amp;ratio=1&amp;size=161289&amp;status=done&amp;style=none&amp;taskId=u3cf0d91f-6821-44ac-9b67-de69108a1a0&amp;width=884" alt="image.png"><br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631673770597-7a9eac6f-fc44-4367-b62a-e59f02a7df6f.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=476&amp;id=ufbc49a5b&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=952&amp;originWidth=1788&amp;originalType=binary&amp;ratio=1&amp;size=229402&amp;status=done&amp;style=none&amp;taskId=u82844e5f-55fc-4e1b-8ad4-41d2b8b1b4c&amp;width=894" alt="image.png"></p>
+<p><strong>Codis组件说明</strong></p>
+<p><strong>Codis Server</strong>：基于 redis-3.2.8 分支开发。增加了额外的数据结构，以支持 slot 有关的操作以及数据迁移指令。<br>
+​<br>
+<strong>Codis Proxy</strong>：客户端连接的 Redis 代理服务, 实现了 Redis 协议。 除部分命令不支持以外，表现的和原生的 Redis 没有区别（就像 Twemproxy）。</p>
+<p><strong>Codis Dashboard</strong>：集群管理工具，支持 codis-proxy、codis-server 的添加、删除，以及据迁移等操作。在集群状态发生改变时，codis-dashboard 维护集群下所有 codis-proxy 的状态的一致性。</p>
+<p><strong>Codis Admin</strong>：集群管理的命令行工具，可用于控制 codis-proxy、codis-dashboard 状态以及访问外部存储。<br>
+​<br>
+<strong>Codis FE</strong>：集群管理界面,多个集群实例共享可以共享同一个前端展示页面，通过配置文件管理后端 codis-dashboard 列表，配置文件可自动更新。 Storage：为集群状态提供外部存储,提供 Namespace 概念，不同集群的会按照不同 product name 进行组织，目前仅提供了 Zookeeper、Etcd、Fs 三种实现，但是提供了抽象的 interface 可自行扩展。</p>
+<p><a name="WH7Xb"></a></p>
+<h4 id="集群规划">集群规划</h4>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>IP</th>
+<th>端口</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Codis-Server</td>
+<td>192.168.197.140</td>
+<td>6379</td>
+<td>Server每台需要安装</td>
+</tr>
+<tr>
+<td>Codis-Server</td>
+<td>192.168.197.141</td>
+<td>6379</td>
+<td>Server每台需要安装</td>
+</tr>
+<tr>
+<td>Codis-Server</td>
+<td>192.168.197.142</td>
+<td>6379</td>
+<td>Server每台需要安装</td>
+</tr>
+<tr>
+<td>Codis-Proxy</td>
+<td>192.168.197.140</td>
+<td>19000</td>
+<td>Proxy安装到第1,2台</td>
+</tr>
+<tr>
+<td>Codis-Proxy</td>
+<td>192.168.197.141</td>
+<td>19000</td>
+<td>Proxy安装到第1,2台</td>
+</tr>
+<tr>
+<td>Codis-Sentinel</td>
+<td>192.168.197.140</td>
+<td>26379</td>
+<td>Sentinel每台需要安装</td>
+</tr>
+<tr>
+<td>Codis-Sentinel</td>
+<td>192.168.197.141</td>
+<td>26379</td>
+<td>Sentinel每台需要安装</td>
+</tr>
+<tr>
+<td>Codis-Sentinel</td>
+<td>192.168.197.142</td>
+<td>26379</td>
+<td>Sentinel每台需要安装</td>
+</tr>
+<tr>
+<td>Codis-Dashboard</td>
+<td>192.168.197.142</td>
+<td>18080</td>
+<td>Dashboard安装到第3台</td>
+</tr>
+<tr>
+<td>Codis-Fe</td>
+<td>192.168.197.142</td>
+<td>9090</td>
+<td>Fe安装到第3台</td>
+</tr>
+<tr>
+<td>Zookeeper</td>
+<td>192.168.197.140</td>
+<td>2181/3888</td>
+<td>ZK每台需要安装</td>
+</tr>
+<tr>
+<td>Zookeeper</td>
+<td>192.168.197.141</td>
+<td>2181/3888</td>
+<td>ZK每台需要安装</td>
+</tr>
+<tr>
+<td>Zookeeper</td>
+<td>192.168.197.142</td>
+<td>2181/3888</td>
+<td>ZK每台需要安装</td>
+</tr>
+</tbody>
+</table>
+<p><strong>​</strong></p>
+<p><a name="hJg04"></a></p>
+<h4 id="安装依赖环境">安装依赖环境</h4>
+<p><strong>​</strong></p>
+<p><strong>安装依赖(3台服务器):</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y autoconf automake libtool gcc glibc gcc-c++ make</span><br></pre></td></tr></table></figure>
+<p><strong>安装JDK(3台服务器)</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 安装JDK8</span></span><br><span class="line">yum install -y java-1.8.0-openjdk-devel </span><br><span class="line"></span><br><span class="line">java -version</span><br><span class="line"><span class="meta">#</span><span class="bash">openjdk version <span class="string">&quot;1.8.0_302&quot;</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash">OpenJDK Runtime Environment (build 1.8.0_302-b08)</span></span><br><span class="line"><span class="meta">#</span><span class="bash">OpenJDK 64-Bit Server VM (build 25.302-b08, mixed mode)</span></span><br></pre></td></tr></table></figure>
+<p><strong>​</strong></p>
+<p><strong>安装Goland(3台服务器)</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">wget https://golang.google.cn/dl/go1.15.3.linux-amd64.tar.gz</span><br><span class="line"></span><br><span class="line">tar -C /usr/local/ -zxvf go1.15.3.linux-amd64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">在/etc/profile文件末尾加入：</span></span><br><span class="line">export GOROOT=/usr/local/go</span><br><span class="line">export GOPATH=/gowork</span><br><span class="line">export PATH=$PATH:$GOROOT/bin:$GOPATH/bin</span><br><span class="line"> </span><br><span class="line"><span class="meta">#</span><span class="bash">让刚才的加入的环境变量生效：</span></span><br><span class="line">source /etc/profile</span><br><span class="line">go version</span><br><span class="line"><span class="meta">#</span><span class="bash"> go version go1.15.3 linux/amd64</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>​</strong></p>
+<p><a name="G6uyA"></a></p>
+<h4 id="安装Zookeeper集群">安装Zookeeper集群</h4>
+<p><strong>​</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">wget https://dlcdn.apache.org/zookeeper/zookeeper-3.6.3/apache-zookeeper-3.6.3-bin.tar.gz</span><br><span class="line"></span><br><span class="line">tar -zxvf apache-zookeeper-3.6.3-bin.tar.gz</span><br><span class="line"></span><br><span class="line">tar -xvf apache-zookeeper-3.6.3-bin.tar.gz -C /opt/zk</span><br><span class="line"></span><br><span class="line">cd /opt/zk/</span><br><span class="line"></span><br><span class="line">rename apache-zookeeper-3.6.3-bin zookeeper apache-zookeeper-3.6.3-bin</span><br><span class="line"></span><br><span class="line">mv zookeeper/ /usr/local/</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>​</strong></p>
+<p>设置环境变量：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/profile</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">在/etc/profile文件最后加入：</span></span><br><span class="line">export ZOOKEEPER_HOME=/usr/local/zookeeper</span><br><span class="line">export PATH=$PATH:$ZOOKEEPER_HOME/bin</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">加载配置生效：</span></span><br><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+<p>创建myid</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">新建几个目录：</span></span><br><span class="line">mkdir -p /data/zookeeper/data</span><br><span class="line">mkdir -p /data/zookeeper/log</span><br><span class="line">mkdir -p /data/zookeeper/conf</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">分别在三台服务器执行：</span></span><br><span class="line">echo 1 &gt; /data/zookeeper/data/myid     //192.168.197.140</span><br><span class="line">echo 2 &gt; /data/zookeeper/data/myid     //192.168.197.141</span><br><span class="line">echo 3 &gt; /data/zookeeper/data/myid     //192.168.197.142</span><br></pre></td></tr></table></figure>
+<p>​</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/local/zookeeper/conf/zoo_sample.cfg /data/zookeeper/conf/zoo.cfg</span><br><span class="line">ln -s /data/zookeeper/conf/zoo.cfg /usr/local/zookeeper/conf/</span><br><span class="line">vim /data/zookeeper/conf/zoo.cfg</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">zoo.cfg文件主要配置如下：</span></span><br><span class="line">dataDir=/data/zookeeper/data</span><br><span class="line">dataLogdir=/data/zookeeper/log</span><br><span class="line">clientPort=2181</span><br><span class="line">server.1=192.168.197.140:2888:3888</span><br><span class="line">server.2=192.168.197.141:2888:3888</span><br><span class="line">server.3=192.168.197.142:2888:3888</span><br></pre></td></tr></table></figure>
+<p>启动Zookeeper</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]# cd /usr/local/zookeeper/bin</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">3台服务器启动</span></span><br><span class="line">[root@localhost bin]# ./zkServer.sh start</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631676455169-7b75967f-2f71-4af1-8247-d4e2b5447bc0.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=87&amp;id=yPpMN&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=174&amp;originWidth=1312&amp;originalType=binary&amp;ratio=1&amp;size=36957&amp;status=done&amp;style=none&amp;taskId=u9acfbf82-e332-4c4c-9cc4-85c522a368e&amp;width=656" alt="image.png"><br>
+如果看到上述信息说明zookeeper配置正确<br>
+<strong>​</strong></p>
+<p><a name="tHIRs"></a></p>
+<h4 id="安装Codis">安装Codis</h4>
+<p><strong>​</strong></p>
+<p><a name="NJAAw"></a><br>
+<strong>下载codis源码</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/</span><br><span class="line"></span><br><span class="line">wget https://github.com/CodisLabs/codis/archive/refs/tags/3.2.0.zip</span><br><span class="line"></span><br><span class="line">unzip codis3.2.0-go1.7.5-linux.zip</span><br><span class="line"></span><br><span class="line">rename codis3.2.0-go1.7.5-linux codis codis3.2.0-go1.7.5-linux</span><br></pre></td></tr></table></figure>
+<p><strong>​</strong></p>
+<p><a name="Bwihu"></a><br>
+<strong>编译codis源码</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">创建codis编译目录：<span class="variable">$GOPATH</span>是写在profile文件中的变量，这里代表的是/gowork/</span></span><br><span class="line"></span><br><span class="line">mkdir $GOPATH/src/github.com/CodisLabs -p</span><br><span class="line"></span><br><span class="line">mv codis /gowork/src/github.com/CodisLabs/</span><br><span class="line"></span><br><span class="line">cd /gowork/src/github.com/CodisLabs/codis/</span><br><span class="line"></span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+<p><strong>​</strong></p>
+<p><a name="t3WaW"></a><br>
+<strong>复制codis文件到工作目录</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mkdir /usr/local/codis</span><br><span class="line"></span><br><span class="line">mkdir /data/codis/log -p</span><br><span class="line"></span><br><span class="line">cp -R bin /usr/local/codis/</span><br><span class="line"></span><br><span class="line">cp -R admin /data/codis/</span><br><span class="line"></span><br><span class="line">cp -R bin /data/codis/</span><br><span class="line"></span><br><span class="line">cp -R config /data/codis/</span><br></pre></td></tr></table></figure>
+<p><a name="cXtIS"></a></p>
+<p><a name="sGQfr"></a><br>
+<strong>配置环境变量</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/profile</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">加入下面两行</span></span><br><span class="line">export CODIS_HOME=/usr/local/codis</span><br><span class="line">export PATH=$PATH:$CODIS_HOME/bin</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">加载配置生效：</span></span><br><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+<p><strong>​</strong></p>
+<p><a name="uvS3g"></a><br>
+<strong>配置dashboard(部署在第3台:192.168.197.142)</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">cd /data/codis/config/</span><br><span class="line"></span><br><span class="line">vim dashboard.toml</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">dashboard.toml需要修改的配置如下：只修改以下几项就可以了</span></span><br><span class="line">coordinator_name = &quot;zookeeper&quot;</span><br><span class="line">coordinator_addr = &quot;192.168.197.140:2181,192.168.197.141:2181,192.168.197.142:2181&quot;</span><br><span class="line">product_name = &quot;codis&quot;</span><br><span class="line">admin_addr = &quot;0.0.0.0:18080&quot;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">启动Dashboard</span></span><br><span class="line">cd /data/codis/admin/</span><br><span class="line">./codis-dashboard-admin.sh start</span><br><span class="line">ps -ef | grep dash</span><br><span class="line">netstat -tunlap| grep dash</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631677127399-8ba2855f-2b7d-44d4-af4a-8e74ee3b4cb8.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=206&amp;id=ud5ad4fcc&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=412&amp;originWidth=1958&amp;originalType=binary&amp;ratio=1&amp;size=93526&amp;status=done&amp;style=none&amp;taskId=ub1e8f116-257e-4a4f-97e3-81df8529d08&amp;width=979" alt="image.png"><br>
+只要出现上述信息，说明启动成功<br>
+​</p>
+<p><a name="KJqYO"></a><br>
+<strong>配置Proxy</strong><br>
+proxy配置2台，分别部署在192.168.197.140,192.168.197.141</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cd /data/codis/config/</span><br><span class="line"></span><br><span class="line">vim proxy.toml</span><br><span class="line"><span class="meta">#</span><span class="bash">修改如下配置</span></span><br><span class="line">product_name = &quot;codis&quot;	#codis集群名称和dashboard的一致</span><br><span class="line">proxy_addr = &quot;0.0.0.0:19000&quot; 	#codis客户端连接端口</span><br><span class="line">jodis_name = &quot;zookeeper&quot;	#外部存储类型</span><br><span class="line">jodis_addr = &quot;192.168.197.140:2181,192.168.197.141:2181,192.168.197.142:2181&quot;</span><br><span class="line">session_recv_timeout = &quot;0&quot;	#如果不设置为0会导致程序 write:broken pipe问题</span><br></pre></td></tr></table></figure>
+<p>​</p>
+<p><a name="F4Fde"></a><br>
+<strong>配置Sentinel</strong><br>
+sentinel配置3台</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /data/codis/config/</span><br><span class="line"></span><br><span class="line">vim sentinel.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bind 0.0.0.0</span><br><span class="line">protected-mode no</span><br><span class="line">dir &quot;/data/codis/sentinel&quot;</span><br><span class="line">logfile &quot;/data/codis/log/sentinel.log&quot;</span><br><span class="line">daemonize yes</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">创建sentinel的工作目录</span></span><br><span class="line">mkdir /data/codis/sentinel  </span><br><span class="line"></span><br><span class="line">cd /data/codis/admin/</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">复制Sentinel启动文件</span></span><br><span class="line">cp codis-server-admin.sh codis-sentinel.sh</span><br><span class="line">vim codis-sentinel.sh</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CODIS_SERVER_BIN=$CODIS_BIN_DIR/redis-sentinel</span><br><span class="line">CODIS_SERVER_PID_FILE=/tmp/sentinel.pid</span><br><span class="line"></span><br><span class="line">CODIS_SERVER_LOG_FILE=/tmp/sentinel.log</span><br><span class="line">CODIS_SERVER_DAEMON_FILE=$CODIS_LOG_DIR/codis-sentinel.out</span><br><span class="line"></span><br><span class="line">CODIS_SERVER_CONF_FILE=$CODIS_CONF_DIR/sentinel.conf</span><br></pre></td></tr></table></figure>
+<p>启动Sentinel</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">./codis-sentinel.sh start</span><br><span class="line"></span><br><span class="line">ps -ef | grep redis-sentinel</span><br><span class="line"></span><br><span class="line">netstat -tunlap| grep redis</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631678583640-b0a49584-2f4f-4f47-9d0a-d916bf7b56af.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=127&amp;id=u35b39876&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=254&amp;originWidth=1644&amp;originalType=binary&amp;ratio=1&amp;size=55848&amp;status=done&amp;style=none&amp;taskId=ua429dd48-6b4f-4dc0-b9f2-df6cf6b8784&amp;width=822" alt="image.png"><br>
+输出上述信息，启动成功。<br>
+​</p>
+<p><a name="vSt3H"></a><br>
+<strong>配置Codis-Server</strong><br>
+3台都需要配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /data/codis/config/</span><br><span class="line"></span><br><span class="line">vim redis.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">pidfile /var/run/redis_6379.pid</span><br><span class="line">port 6379</span><br><span class="line">dbfilename dump_6379.rdb</span><br><span class="line">dir /data/codis/redis_6379</span><br><span class="line">logfile &quot;/data/codis/logs/redis_6379.log&quot;</span><br><span class="line">bind 0.0.0.0</span><br><span class="line">maxmemory 1g	#一定要设置最大内存，否则后面的codis无法使用</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /data/codis/redis_6379</span><br><span class="line"></span><br><span class="line">cd /data/codis/admin/</span><br><span class="line"></span><br><span class="line">./codis-server-admin.sh start</span><br><span class="line"></span><br><span class="line">ps -ef| grep codis-server</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631678738602-057a18a9-dcc1-41a0-ba49-0df37179ba80.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=137&amp;id=u16df2443&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=274&amp;originWidth=1550&amp;originalType=binary&amp;ratio=1&amp;size=55603&amp;status=done&amp;style=none&amp;taskId=u4cb04bcb-0413-4ac2-8577-e7c7bd473ca&amp;width=775" alt="image.png"><br>
+输出上述信息，Codis-Server启动成功。</p>
+<p><a name="cUt2c"></a><br>
+<strong>配置Codis-Fe</strong><br>
+Fe是Web管理页面，配置到192.168.197.142就可以了</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /data/codis/admin/</span><br><span class="line"></span><br><span class="line">vim codis-fe-admin.sh</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">COORDINATOR_NAME=&quot;zookeeper&quot;</span><br><span class="line">COORDINATOR_ADDR=&quot;192.168.197.140:2181,192.168.197.141:2181,192.168.197.142:2181&quot;</span><br><span class="line">CODIS_FE_ADDR=&quot;0.0.0.0:9090&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./codis-fe-admin.sh start</span><br><span class="line"></span><br><span class="line">ps -ef | grep codis-fe</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631679096539-6603f4e6-59a2-4a75-8a80-7cc6ba18bd31.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=158&amp;id=u45d07c10&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=316&amp;originWidth=1962&amp;originalType=binary&amp;ratio=1&amp;size=75967&amp;status=done&amp;style=none&amp;taskId=ub6a59e76-80da-49f2-89db-f071530b26e&amp;width=981" alt="image.png"><br>
+输出上述信息，Codis-Server启动成功。</p>
+<p><a name="iK0VB"></a></p>
+<h4 id="Web操作管理">Web操作管理</h4>
+<p>打开Fe页面地址**:**<a target="_blank" rel="noopener" href="http://192.168.197.142:9090/">http://192.168.197.142:9090/</a><br>
+<strong>​</strong></p>
+<p><a name="JgMLk"></a><br>
+<strong>添加Proxy</strong><br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631686036799-6854a47b-b67f-467a-8d7c-1b979d382440.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=252&amp;id=u9b4513e2&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=504&amp;originWidth=2292&amp;originalType=binary&amp;ratio=1&amp;size=68118&amp;status=done&amp;style=none&amp;taskId=u060cc062-90b5-4b4e-8f3d-848a731ac0d&amp;width=1146" alt="image.png"><br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631686062520-db33943b-729e-47c0-ab9d-4c385dd8244d.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=224&amp;id=u4532b209&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=448&amp;originWidth=2242&amp;originalType=binary&amp;ratio=1&amp;size=86420&amp;status=done&amp;style=none&amp;taskId=uddfbcc70-a16b-4e13-93a4-ec8ff24996e&amp;width=1121" alt="image.png"><br>
+<strong>注意事项：</strong><br>
+在添加的时候如果没有启动proxy会提示一下错误，此时启动proxy后再来Web页面添加Proxy<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631686152552-4870f0c9-55a8-4fde-af22-3eee7131c7a6.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=398&amp;id=u6fbb27d6&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=796&amp;originWidth=1786&amp;originalType=binary&amp;ratio=1&amp;size=118517&amp;status=done&amp;style=none&amp;taskId=uc374a3a7-2bf3-4b7f-9a4d-d06277e419b&amp;width=893" alt="image.png"></p>
+<p><a name="WEkRh"></a><br>
+<strong>添加Sentinel</strong><br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631686206704-de3ee040-2475-4b2b-b1d4-0efa57b93b3d.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=336&amp;id=u61e2a510&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=672&amp;originWidth=2294&amp;originalType=binary&amp;ratio=1&amp;size=110686&amp;status=done&amp;style=none&amp;taskId=u8668d51e-9a98-45b9-9fc7-384db18bd05&amp;width=1147" alt="image.png"><br>
+新加入的sentinel并未开始同步，点一下SYNC让他们开始协同工作：<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631686222995-3ccd8ac0-5aa3-4909-b2ac-dc60a46aea6d.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=585&amp;id=u314fe17b&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1170&amp;originWidth=2224&amp;originalType=binary&amp;ratio=1&amp;size=211121&amp;status=done&amp;style=none&amp;taskId=ue63c6db4-6429-4f68-9888-2d47dd721b5&amp;width=1112" alt="image.png"><br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631686235668-ce91adad-409c-4642-9260-40dce8bea6e6.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=360&amp;id=ud5587bf3&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=720&amp;originWidth=2282&amp;originalType=binary&amp;ratio=1&amp;size=108458&amp;status=done&amp;style=none&amp;taskId=ueef90a42-e00c-4e6f-8d2c-2b1824bd52a&amp;width=1141" alt="image.png"><br>
+查看Sentinel日志<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631686255921-bddb02c8-5720-4ab8-a1bf-61779e219d81.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=201&amp;id=u53a8acba&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=402&amp;originWidth=1992&amp;originalType=binary&amp;ratio=1&amp;size=136502&amp;status=done&amp;style=none&amp;taskId=u2d54660b-09ef-47b4-8bc9-cf5a782ff76&amp;width=996" alt="image.png"></p>
+<p><a name="cfovQ"></a><br>
+<strong>添加Codis-Server</strong></p>
+<p>首选要对数据库服务器进行分组，创建Group 1<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631686350249-32d89c84-bdbe-4d9e-963f-ef861945c42b.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=203&amp;id=uec4f1507&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=406&amp;originWidth=1620&amp;originalType=binary&amp;ratio=1&amp;size=63207&amp;status=done&amp;style=none&amp;taskId=uf94c66d2-5985-457d-9510-fbad39dd6a3&amp;width=810" alt="image.png"></p>
+<p>然后对Group 1中添加Codis-Server服务器<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631686457781-858548aa-e9e6-42fa-addd-c3ece9ee13ec.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=358&amp;id=uf73e2677&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=716&amp;originWidth=2264&amp;originalType=binary&amp;ratio=1&amp;size=171049&amp;status=done&amp;style=none&amp;taskId=uef5f0f25-d062-4b24-a45c-6d06a2b4392&amp;width=1132" alt="image.png"><br>
+如果下面从节点服务器未开始同步可以点击它后面的绿色表扳手让他开始同步，如上图所示就是正常的。<br>
+​<br>
+<a name="C1Qfd"></a><br>
+<strong>数据分片</strong><br>
+codis是将数据从0-1023分成1024份，可以指定哪些编号的数据存放在哪些redis组服务器中，我们这里只有一个组，所以就设置将所有数据分片放在同一个组中，目前默认是这样的，所有分片数据都是离线的<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631686502484-db00e97e-ffee-4052-8e5f-f8ec43929c6c.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=300&amp;id=u327dc758&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=600&amp;originWidth=1554&amp;originalType=binary&amp;ratio=1&amp;size=94314&amp;status=done&amp;style=none&amp;taskId=u990a3a7b-a577-42b2-b84a-25716d21901&amp;width=777" alt="image.png"><br>
+指定分组之后开始迁移数据<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631686521359-e0d7451c-b8cd-4a75-836b-230c2bd59021.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=276&amp;id=u3159f74d&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=552&amp;originWidth=1568&amp;originalType=binary&amp;ratio=1&amp;size=92340&amp;status=done&amp;style=none&amp;taskId=uce9d9f88-9d71-4c88-927c-3735de359ec&amp;width=784" alt="image.png"><br>
+迁移完成后：<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631686537574-5f7d01f5-1d16-46d5-9cc4-fef9757a2f96.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=290&amp;id=ubb98a54c&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=580&amp;originWidth=1556&amp;originalType=binary&amp;ratio=1&amp;size=89112&amp;status=done&amp;style=none&amp;taskId=ue6d15ed8-b3c2-44b3-98bc-80a42e350f1&amp;width=778" alt="image.png"></p>
+<p>扩缩容后，可以利用R额balance All Slots 自动平衡Slot分布<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631686611116-a0add35c-719c-4909-9445-93d49b6cf647.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=604&amp;id=u3d2a9304&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1208&amp;originWidth=2196&amp;originalType=binary&amp;ratio=1&amp;size=168621&amp;status=done&amp;style=none&amp;taskId=u3db26fff-1107-45df-a201-4d2b1f036b4&amp;width=1098" alt="image.png"></p>
+<p><a name="U639d"></a></p>
+<h4 id="Codis测试">Codis测试</h4>
+<p><a name="zt2NZ"></a><br>
+<strong>连接测试</strong><br>
+在任意一台codis目录登录Proxy</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]# ./redis-cli -h 192.168.197.140 -p 19000</span><br><span class="line">192.168.197.140:19000&gt; set hello world</span><br><span class="line">OK</span><br><span class="line">192.168.197.140:19000&gt; get hello</span><br><span class="line">&quot;world&quot;</span><br><span class="line">192.168.197.140:19000&gt;</span><br></pre></td></tr></table></figure>
+<p><a name="sG61a"></a><br>
+<strong>2. 并发测试</strong><br>
+使用redis-benchmark</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 并发100用户，发起100000次请求</span></span><br><span class="line">[root@localhost bin]# redis-benchmark -h 192.168.197.140 -p 19000 -c 100 -n 100000</span><br></pre></td></tr></table></figure>
+<p>压测时观察Fe的QPS图表:<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631686830022-a56a4e24-7d28-4fde-b4b5-794c48710ff6.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=646&amp;id=uf4bbb7e0&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1292&amp;originWidth=2188&amp;originalType=binary&amp;ratio=1&amp;size=132311&amp;status=done&amp;style=none&amp;taskId=u4431b926-afdd-4040-9db5-3caea5922ae&amp;width=1094" alt="image.png"><br>
+<a name="OydC1"></a></p>
+<h2 id="Redis-Cluster模式">Redis Cluster模式</h2>
+<p>采用中间加一层Proxy的中心化模式时，这就对Proxy的要求很高，因为它一旦出现故障，那么操作这个Proxy的所有客户端都无法处理，要想实现Proxy的高可用，还需要另外的机制来实现，例如Keepalive。<br>
+​<br>
+而且增加一层Proxy进行转发，必然会有一定的性能损耗，那么除了客户端分片和上面提到的中心化的方案之外，还有比较好的解决方案么？</p>
+<p>Redis官方推出的Redis Cluster另辟蹊径，它没有采用中心化模式的Proxy方案，而是把请求转发逻辑一部分放在客户端，一部分放在了服务端，它们之间互相配合完成请求的处理。<br>
+​<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631687165311-869d1f61-af64-4355-9fa4-a984191461ed.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=431&amp;id=ue7861769&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=862&amp;originWidth=1808&amp;originalType=binary&amp;ratio=1&amp;size=258446&amp;status=done&amp;style=none&amp;taskId=u2a4e6f44-81f3-4085-9965-27310c50f84&amp;width=904" alt="image.png"></p>
+<p>Redis Cluster没有了中间的Proxy代理层，那么是如何进行请求的转发呢？</p>
+<p>Redis把请求转发的逻辑放在了Smart Client中，要想使用Redis Cluster，必须升级Client SDK，这个SDK中内置了请求转发的逻辑，所以业务开发人员同样不需要自己编写转发规则，Redis Cluster采用16384个槽位进行路由规则的转发。</p>
+<p>没有了Proxy层进行转发，客户端可以直接操作对应的Redis节点，这样就少了Proxy层转发的性能损耗。<br>
+​<br>
+Redis Cluster也提供了<strong>在线数据迁移、节点扩容缩容等功能，内部还内置了哨兵完成故障自动恢复功</strong>能，可见它是一个集成所有功能于一体的Cluster。因此它在部署时非常简单，不需要部署过多的组件，对于运维极其友好。<br>
+​</p>
+<p>Redis Cluster在节点数据迁移、扩容缩容时，对于客户端的请求处理也做了相应的处理。当客户端访问的数据正好在迁移过程中时，服务端与客户端制定了一些协议，来告知客户端去正确的节点上访问，帮助客户端订正自己的路由规则。<br>
+​</p>
+<p><strong>虽然Redis Cluster提供了在线数据迁移的功能，但它的迁移性能并不高，迁移过程中遇到大key时还有可能长时间阻塞迁移的两个节点，这个功能相较于Codis来说，Codis数据迁移性能更好。</strong><br>
+​<br>
+现在越来越多的公司开始采用Redis Cluster，有能力的公司还在它的基础上进行了二次开发和定制，来解决Redis Cluster存在的一些问题，我们期待Redis Cluster未来有更好的发展。</p>
+<p><a name="REt4Q"></a></p>
+<h3 id="配置Redis-Cluster集群">配置Redis Cluster集群</h3>
+<p>我们采用3主3从模式，加上6台Sentinel的架构，配置集群主要有两步:</p>
+<ol>
+<li>配置文件</li>
+<li>启动验证</li>
+</ol>
+<p><strong>集群规划</strong></p>
+<table>
+<thead>
+<tr>
+<th>节点</th>
+<th>IP</th>
+<th>端口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cluster-Master1</td>
+<td>192.168.197.128</td>
+<td>6379</td>
+</tr>
+<tr>
+<td>Cluster-Master2</td>
+<td>192.168.197.129</td>
+<td>6379</td>
+</tr>
+<tr>
+<td>Cluster-Master3</td>
+<td>192.168.197.130</td>
+<td>6379</td>
+</tr>
+<tr>
+<td>Cluster-Slave1</td>
+<td>192.168.197.132</td>
+<td>6379</td>
+</tr>
+<tr>
+<td>Cluster-Slave2</td>
+<td>192.168.197.133</td>
+<td>6379</td>
+</tr>
+<tr>
+<td>Cluster-Slave3</td>
+<td>192.168.197.134</td>
+<td>6379</td>
+</tr>
+<tr>
+<td>Cluster-Master-Sentinel-1</td>
+<td>192.168.197.128</td>
+<td>26379</td>
+</tr>
+<tr>
+<td>Cluster-Master-Sentinel-2</td>
+<td>192.168.197.129</td>
+<td>26379</td>
+</tr>
+<tr>
+<td>Cluster-Master-Sentinel-3</td>
+<td>192.168.197.130</td>
+<td>26379</td>
+</tr>
+<tr>
+<td>Cluster-Slave-Sentinel-1</td>
+<td>192.168.197.132</td>
+<td>26379</td>
+</tr>
+<tr>
+<td>Cluster-Slave-Sentinel-2</td>
+<td>192.168.197.133</td>
+<td>26379</td>
+</tr>
+<tr>
+<td>Cluster-Slave-Sentinel-3</td>
+<td>192.168.197.134</td>
+<td>26379</td>
+</tr>
+</tbody>
+</table>
+<p><strong>配置Cluster</strong><br>
+<strong>​</strong></p>
+<p>每台Server上都复制redis.conf到redis-cluster.conf<br>
+修改配置项如下:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">bind 0.0.0.0</span><br><span class="line"></span><br><span class="line">daemonize yes	#后台运行</span><br><span class="line"></span><br><span class="line">logfile &quot;/usr/redis/log/redis-cluster.log&quot;	#日志目录</span><br><span class="line"></span><br><span class="line">cluster-enabled yes  #启动集群模式</span><br><span class="line"></span><br><span class="line">protected-mode no	# 非保护模式</span><br></pre></td></tr></table></figure>
+<p><strong>启动Codis-Server</strong><br>
+依次启动6台Codis-Server</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/bin/</span><br><span class="line"></span><br><span class="line">./redis-server /opt/redis/redis-cluster.conf</span><br></pre></td></tr></table></figure>
+<p>查看启动情况<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631688298051-347239d2-429e-4409-9136-e34e1499ee8b.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=91&amp;id=u3cb45a9b&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=182&amp;originWidth=1236&amp;originalType=binary&amp;ratio=1&amp;size=38057&amp;status=done&amp;style=none&amp;taskId=u0beef7a9-b08f-478b-b080-e2afeebccc0&amp;width=618" alt="image.png"></p>
+<p>创建集群</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./redis-cli  --cluster create 192.168.197.128:6379 192.168.197.129:6379 192.168.197.130:6379 192.168.197.132:6379 192.168.197.133:6379 192.168.197.134:6379 --cluster-replicas 1</span><br><span class="line"><span class="meta">#</span><span class="bash"> --cluster-replicas 1 命令的意思是创建master的时候同时创建一个slave</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; Performing <span class="built_in">hash</span> slots allocation on 6 nodes...</span></span><br><span class="line">Master[0] -&gt; Slots 0 - 5460</span><br><span class="line">Master[1] -&gt; Slots 5461 - 10922</span><br><span class="line">Master[2] -&gt; Slots 10923 - 16383</span><br><span class="line">Adding replica 192.168.197.133:6379 to 192.168.197.128:6379</span><br><span class="line">Adding replica 192.168.197.134:6379 to 192.168.197.129:6379</span><br><span class="line">Adding replica 192.168.197.132:6379 to 192.168.197.130:6379</span><br><span class="line">M: 856a2d394d5f1a8b3e27fd781ac734901b122727 192.168.197.128:6379</span><br><span class="line">   slots:[0-5460] (5461 slots) master</span><br><span class="line">M: 8c20d77ee8b0d1eb8ff16879755de5f268940896 192.168.197.129:6379</span><br><span class="line">   slots:[5461-10922] (5462 slots) master</span><br><span class="line">M: 378333229f4740d15f0d58d94427a63fb9795a68 192.168.197.130:6379</span><br><span class="line">   slots:[10923-16383] (5461 slots) master</span><br><span class="line">S: 485a576acf4a6a152da2827ced04393f6535c6f9 192.168.197.132:6379</span><br><span class="line">   replicates 378333229f4740d15f0d58d94427a63fb9795a68</span><br><span class="line">S: 60efdb0dfbadb9cca6d50329eb8fa05a9ea9cc01 192.168.197.133:6379</span><br><span class="line">   replicates 856a2d394d5f1a8b3e27fd781ac734901b122727</span><br><span class="line">S: cf619ec524e29265984bb900111cbef9f98609be 192.168.197.134:6379</span><br><span class="line">   replicates 8c20d77ee8b0d1eb8ff16879755de5f268940896</span><br><span class="line">Can I set the above configuration? (type &#x27;yes&#x27; to accept):</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">需要手动输入yes</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; Nodes configuration updated</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; Assign a different config epoch to each node</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; Sending CLUSTER MEET messages to join the cluster</span></span><br><span class="line">Waiting for the cluster to join</span><br><span class="line">....</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; Performing Cluster Check (using node 192.168.197.128:6379)</span></span><br><span class="line">M: 856a2d394d5f1a8b3e27fd781ac734901b122727 192.168.197.128:6379</span><br><span class="line">   slots:[0-5460] (5461 slots) master</span><br><span class="line">   1 additional replica(s)</span><br><span class="line">M: 8c20d77ee8b0d1eb8ff16879755de5f268940896 192.168.197.129:6379</span><br><span class="line">   slots:[5461-10922] (5462 slots) master</span><br><span class="line">   1 additional replica(s)</span><br><span class="line">S: cf619ec524e29265984bb900111cbef9f98609be 192.168.197.134:6379</span><br><span class="line">   slots: (0 slots) slave</span><br><span class="line">   replicates 8c20d77ee8b0d1eb8ff16879755de5f268940896</span><br><span class="line">S: 60efdb0dfbadb9cca6d50329eb8fa05a9ea9cc01 192.168.197.133:6379</span><br><span class="line">   slots: (0 slots) slave</span><br><span class="line">   replicates 856a2d394d5f1a8b3e27fd781ac734901b122727</span><br><span class="line">S: 485a576acf4a6a152da2827ced04393f6535c6f9 192.168.197.132:6379</span><br><span class="line">   slots: (0 slots) slave</span><br><span class="line">   replicates 378333229f4740d15f0d58d94427a63fb9795a68</span><br><span class="line">M: 378333229f4740d15f0d58d94427a63fb9795a68 192.168.197.130:6379</span><br><span class="line">   slots:[10923-16383] (5461 slots) master</span><br><span class="line">   1 additional replica(s)</span><br><span class="line">[OK] All nodes agree about slots configuration.</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; Check <span class="keyword">for</span> open slots...</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; Check slots coverage...</span></span><br><span class="line">[OK] All 16384 slots covered.</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631688643637-37d0e981-76bd-4bc8-bfd5-5cc39fad521a.png#clientId=u9511ae07-af4d-4&amp;from=paste&amp;height=854&amp;id=u5c1ca3bf&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1708&amp;originWidth=2126&amp;originalType=binary&amp;ratio=1&amp;size=450120&amp;status=done&amp;style=none&amp;taskId=u2ef52db9-b715-452f-87e0-7436c08a2a7&amp;width=1063" alt="image.png"></p>
+<p>数据验证</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 注意 集群模式下要带参数 -c，表示集群，否则不能正常存取数据！！！</span></span><br><span class="line"></span><br><span class="line">[root@localhost bin]# ./redis-cli -c</span><br><span class="line">127.0.0.1:6379&gt; set hello world</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get hello</span><br><span class="line">&quot;world&quot;</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+<p><a name="u9imo"></a></p>
+<h2 id="公有云Redis集群">公有云Redis集群</h2>
+<p>公司在快速发展的过程中，Redis逐渐重要起来。从一开始存储不重要不核心的数据，到最后Redis会成为核心业务系统中不可获取的一个中间件。这对Redis运维要求大大增加，比如在线扩容、BigKey搜索、同步数据到MySQL、主从升级到哨兵或集群等等，这对公司运维与开发团队要求逐渐提高。</p>
+<blockquote>
+<p>Redis企业版作为云数据库Redis社区版的基础上开发的强化版Redis服务，从访问延时、持久化需求、整体成本这三个核心维度考量，基于DRAM、NVM和ESSD云盘等存储介质，推出了多种不同形态的产品，为您提供更强的性能、更多的数据结构和更灵活的存储方式，满足不同场景下的业务需求。</p>
+</blockquote>
+<p>在公有云KV数据库选型上，建议分为三步：</p>
+<ol>
+<li>初期：采用ESSD款作为入门的Redis性价比最高，前期数据量不大，价格也是最低。</li>
+<li>中期：升级成基于Sentinel的高可用版本，或读写分离版本(毕竟Redis是经典的2/8原则的产品20%写入,80%读取)</li>
+<li>后期：数据量不大增加后，单体Redis承载量不可能满足需求，建议升级到集群版本</li>
+</ol>
+<p><a name="lZhS7"></a></p>
+<h1>集群常见问题</h1>
+<p><a name="e6jZj"></a></p>
+<h2 id="Lettuce拓扑刷新问题">Lettuce拓扑刷新问题</h2>
+<p>SpringBoot2.x开始默认使用的Redis客户端由Jedis变成了Lettuce，但是当Redis集群中某个节点挂掉之后，Lettuce将无法继续操作Redis，原因在于此时Lettuce使用的仍然是有问题的连接信息。<br>
+​</p>
+<p>实际上，Lettuce支持redis 集群拓扑动态刷新，但是默认并没有开启，SpringBoot在集成Lettuce时默认也没有开启。并且在SpringBoot2.3.0之前，是没有配置项设置Lettuce自动刷新拓扑的。</p>
+<p>相关issue：<a target="_blank" rel="noopener" href="https://github.com/spring-projects/spring-boot/issues/15630">Add configuration to enable Redis Cluster topology refresh</a><br>
+​</p>
+<p>解决方案1:<br>
+升级到SpringBoot2.3.0或以上版本。并添加如下配置项:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spring.redis.timeout=60s</span><br><span class="line">spring.redis.lettuce.cluster.refresh.period=60s</span><br><span class="line">spring.redis.lettuce.cluster.refresh.adaptive=true</span><br></pre></td></tr></table></figure>
+<p><a name="CXeEu"></a></p>
+<p>解决方案2:<br>
+配置LettuceConnectionFactory ，设置拓扑刷新策略。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> DefaultClientResources <span class="title">lettuceClientResources</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> DefaultClientResources.create();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> LettuceConnectionFactory <span class="title">lettuceConnectionFactory</span><span class="params">(RedisProperties redisProperties, ClientResources clientResources)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    ClusterTopologyRefreshOptions topologyRefreshOptions = ClusterTopologyRefreshOptions.builder()</span><br><span class="line">            .enablePeriodicRefresh(Duration.ofSeconds(<span class="number">30</span>)) <span class="comment">//按照周期刷新拓扑</span></span><br><span class="line">            .enableAllAdaptiveRefreshTriggers() <span class="comment">//根据事件刷新拓扑</span></span><br><span class="line">            .build();</span><br><span class="line"></span><br><span class="line">    ClusterClientOptions clusterClientOptions = ClusterClientOptions.builder()</span><br><span class="line">            <span class="comment">//redis命令超时时间,超时后才会使用新的拓扑信息重新建立连接</span></span><br><span class="line">            .timeoutOptions(TimeoutOptions.enabled(Duration.ofSeconds(<span class="number">10</span>)))</span><br><span class="line">            .topologyRefreshOptions(topologyRefreshOptions)</span><br><span class="line">            .build();</span><br><span class="line"></span><br><span class="line">    LettuceClientConfiguration clientConfiguration = LettuceClientConfiguration.builder()</span><br><span class="line">            .clientResources(clientResources)</span><br><span class="line">            .clientOptions(clusterClientOptions)</span><br><span class="line">            .build();</span><br><span class="line"></span><br><span class="line">    RedisClusterConfiguration clusterConfig = <span class="keyword">new</span> RedisClusterConfiguration(redisProperties.getCluster().getNodes());</span><br><span class="line">    clusterConfig.setMaxRedirects(redisProperties.getCluster().getMaxRedirects());</span><br><span class="line">    clusterConfig.setPassword(RedisPassword.of(redisProperties.getPassword()));</span><br><span class="line"></span><br><span class="line">    LettuceConnectionFactory lettuceConnectionFactory = <span class="keyword">new</span> LettuceConnectionFactory(clusterConfig, clientConfiguration);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> lettuceConnectionFactory;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>解决方案3:<br>
+将spring-boot-starter-data-redis依赖的Lettuce，修改成Jedis。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-data-redis&lt;/artifactId&gt;</span><br><span class="line">    &lt;exclusions&gt;</span><br><span class="line">        &lt;exclusion&gt;</span><br><span class="line">            &lt;groupId&gt;io.lettuce&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;lettuce-core&lt;/artifactId&gt;</span><br><span class="line">        &lt;/exclusion&gt;</span><br><span class="line">    &lt;/exclusions&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;redis.clients&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;jedis&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p><a name="DAJW5"></a><br>
+<a name="OiCZf"></a></p>
+<h2 id="Redis-Cluster扩缩容">Redis Cluster扩缩容</h2>
+<p><a name="blv2g"></a></p>
+<h3 id="扩容">扩容</h3>
+<p><strong>集群规划</strong></p>
+<p>扩容一主一从</p>
+<table>
+<thead>
+<tr>
+<th><strong>名称</strong></th>
+<th><strong>IP</strong></th>
+<th><strong>端口</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主节点</td>
+<td>192.168.197.135</td>
+<td>6379</td>
+</tr>
+<tr>
+<td>从节点</td>
+<td>192.168.197.136</td>
+<td>6379</td>
+</tr>
+</tbody>
+</table>
+<p><strong>增加主节点</strong><br>
+注意: 新增的节点必须用集群模式先启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./redis-cli --cluster add-node 192.168.197.135:6379 192.168.197.129:6379</span><br><span class="line"><span class="comment"># 192.168.197.135:6379 新节点IP</span></span><br><span class="line"><span class="comment"># 192.168.197.129:6379 老节点IP(任意老IP)</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631689860272-2336238b-bf51-4467-83ab-bb2ea812f49d.png#clientId=u9b270004-e055-4&amp;from=paste&amp;height=531&amp;id=udbd5f73e&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1062&amp;originWidth=1756&amp;originalType=binary&amp;ratio=1&amp;size=220197&amp;status=done&amp;style=none&amp;taskId=ubeac1368-548a-4a39-857f-2aa6bcbee9c&amp;width=878" alt="image.png"><br>
+登录任意一台Server，查看集群节点:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./redis-cli -c</span><br><span class="line"></span><br><span class="line">cluster nodes</span><br></pre></td></tr></table></figure>
+<p><strong>转移slot</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#从192.168.197.128:6379转移2000个slot到新增节点</span></span><br><span class="line">./redis-cli --cluster reshard 192.168.197.128:6379 --cluster-from 856a2d394d5f1a8b3e27fd781ac734901b122727 --cluster-to ab0e38313f85f5a9bf7bc77282b270540a8642f1 --cluster-slots 2000</span><br><span class="line"></span><br><span class="line"><span class="comment"># 856a2d394d5f1a8b3e27fd781ac734901b122727 192.168.197.128的ID</span></span><br><span class="line"><span class="comment"># ab0e38313f85f5a9bf7bc77282b270540a8642f1 192.168.197.135的ID</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631690038627-d4871fcd-5c6b-417c-a986-fed17d55b890.png#clientId=u9b270004-e055-4&amp;from=paste&amp;height=240&amp;id=u98cf5e9a&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=480&amp;originWidth=1998&amp;originalType=binary&amp;ratio=1&amp;size=127196&amp;status=done&amp;style=none&amp;taskId=uf923bd40-c2a6-4e26-99df-b5952f4bc6a&amp;width=999" alt="image.png"><br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631690166722-798465bc-e1e4-459c-a00b-ccbc32e5ad8b.png#clientId=u9b270004-e055-4&amp;from=paste&amp;height=160&amp;id=u76cc1f03&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=320&amp;originWidth=2008&amp;originalType=binary&amp;ratio=1&amp;size=111433&amp;status=done&amp;style=none&amp;taskId=u9eb60d3d-0031-41ca-9aff-75c4a751c9c&amp;width=1004" alt="image.png"></p>
+<p><strong>增加从节点</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 增加 192.168.197.129到集群</span></span><br><span class="line">./redis-cli --cluster add-node 192.168.197.136:6379 192.168.197.129:6379</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631690192526-dfe1371f-99fb-42ad-8cd3-81f129a15581.png#clientId=u9b270004-e055-4&amp;from=paste&amp;height=522&amp;id=u6207ec59&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1044&amp;originWidth=1344&amp;originalType=binary&amp;ratio=1&amp;size=215545&amp;status=done&amp;style=none&amp;taskId=u3c04ce18-1470-4953-9194-0f970472262&amp;width=672" alt="image.png"></p>
+<p><strong>配置为从节点</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#登录从节点</span></span><br><span class="line">./redis-cli -c</span><br><span class="line"></span><br><span class="line"><span class="comment">#配置为从节点</span></span><br><span class="line">cluster replicate ab0e38313f85f5a9bf7bc77282b270540a8642f1</span><br><span class="line"></span><br><span class="line"><span class="comment">#ab0e38313f85f5a9bf7bc77282b270540a8642f1是主节点id</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/269333/1631690309074-9dc1ce10-578f-46df-9f5d-1c574babadda.png#clientId=u9b270004-e055-4&amp;from=paste&amp;height=382&amp;id=u4cd8b636&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=764&amp;originWidth=2100&amp;originalType=binary&amp;ratio=1&amp;size=267728&amp;status=done&amp;style=none&amp;taskId=u140135dd-7f4f-46e4-960a-08e4532f1af&amp;width=1050" alt="image.png"></p>
+<p><a name="y5EXH"></a></p>
+<h3 id="缩容">缩容</h3>
+<p>缩容步骤比较简单，主要分为3步:</p>
+<ol>
+<li>返回槽位</li>
+<li>删除主节点</li>
+<li>删除从节点</li>
+</ol>
+<p>集群规划(删除)</p>
+<table>
+<thead>
+<tr>
+<th><strong>名称</strong></th>
+<th><strong>IP</strong></th>
+<th><strong>端口</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主节点</td>
+<td>192.168.197.135</td>
+<td>6379</td>
+</tr>
+<tr>
+<td>从节点</td>
+<td>192.168.197.136</td>
+<td>6379</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回槽位</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./redis-cli  --cluster reshard 192.168.197.135:6379</span><br></pre></td></tr></table></figure>
+<p><strong>删除主节点</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./redis-cli --cluster del-node 192.168.197.135:6379 452d7d1a188715a2aab5d38170c8d09f7ccf84db</span><br><span class="line"></span><br><span class="line"><span class="comment">#452d7d1a188715a2aab5d38170c8d09f7ccf84db 主节点ID</span></span><br></pre></td></tr></table></figure>
+<p><strong>删除从节点</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./redis-cli --cluster del-node 192.168.197.136:6379 1fd355473a39ddeae33186f56716d4a477562b52</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1fd355473a39ddeae33186f56716d4a477562b52 从节点ID</span></span><br></pre></td></tr></table></figure>
+
+
+        <hr>
+        <!-- Pager -->
+        <ul class="pager">
+          
+          
+        </ul>
+
+        
+        <!-- tip start -->
+        <!-- tip -->
+<!-- tip start -->
+<div class="tip">
+  <p>
+    
+      如果您喜欢此博客或发现它对您有用，则欢迎对此发表评论。 也欢迎您共享此博客，以便更多人可以参与。 如果博客中使用的图像侵犯了您的版权，请与作者联系以将其删除。 谢谢 ！
+    
+  </p>
+</div>
+<!-- tip end -->
+
+        <!-- tip end -->
+        
+
+        
+        <hr>
+
+        <!-- comments start -->
+        <!-- 1. gitalk comment -->
+
+  <!-- gitalk start -->
+  <!-- Docs:https://github.com/gitalk/gitalk/blob/master/readme-cn.md -->
+
+  <div id="gitalk-container"></div>
+
+  
+    <!-- <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.js"></script> -->
+    <script src="/js/comment/gitalk.js"></script>
+  
+
+  <script>
+    var gitalk = new Gitalk({
+      clientID: '',
+      clientSecret: '',
+      repo: '',
+      owner: '',
+      admin: '',
+      id: 'Wed Sep 15 2021 02:34:17 GMT+0800', // Ensure uniqueness and length less than 50
+      distractionFreeMode: false, // Facebook-like distraction free mode
+      perPage: 10,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      language: 'en',
+      proxy: 'https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token'
+    });
+    gitalk.render('gitalk-container');
+
+    var gtFolded = () => {
+      setTimeout(function () {
+        let markdownBody = document.getElementsByClassName("markdown-body");
+        let list = Array.from(markdownBody);
+        list.forEach(item => {
+          if (item.clientHeight > 250) {
+            item.classList.add('gt-comment-body-folded');
+            item.style.maxHeight = '250px';
+            item.title = 'Click to Expand';
+            item.onclick = function () {
+              item.classList.remove('gt-comment-body-folded');
+              item.style.maxHeight = '';
+              item.title = '';
+              item.onclick = null;
+            };
+          }
+        })
+      }, 800);
+    }
+  </script>
+
+  <!-- gitalk end -->
+
+
+<!-- 2. gitment comment -->
+
+
+<!-- 3. disqus comment -->
+
+
+        <!-- comments end -->
+        <hr>
+
+      </div>
+
+      <!-- Catalog: Tabe of Content -->
+      <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">目录</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">概述</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">安装Redis</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">Redis高可用方案</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Redis%E4%B8%BB%E4%BB%8E%E6%9E%B6%E6%9E%84"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">Redis主从架构</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Redis-Sentinel-%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">Redis Sentinel(哨兵模式)</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">Redis分片集群方案</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%88%86%E7%89%87"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">客户端分片</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AFProxy%E6%A8%A1%E5%BC%8F"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">服务端Proxy模式</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Codis"><span class="toc-nav-number">4.2.1.</span> <span class="toc-nav-text">Codis</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%9B%86%E7%BE%A4%E8%A7%84%E5%88%92"><span class="toc-nav-number">4.2.1.1.</span> <span class="toc-nav-text">集群规划</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E7%8E%AF%E5%A2%83"><span class="toc-nav-number">4.2.1.2.</span> <span class="toc-nav-text">安装依赖环境</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%AE%89%E8%A3%85Zookeeper%E9%9B%86%E7%BE%A4"><span class="toc-nav-number">4.2.1.3.</span> <span class="toc-nav-text">安装Zookeeper集群</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%AE%89%E8%A3%85Codis"><span class="toc-nav-number">4.2.1.4.</span> <span class="toc-nav-text">安装Codis</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Web%E6%93%8D%E4%BD%9C%E7%AE%A1%E7%90%86"><span class="toc-nav-number">4.2.1.5.</span> <span class="toc-nav-text">Web操作管理</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Codis%E6%B5%8B%E8%AF%95"><span class="toc-nav-number">4.2.1.6.</span> <span class="toc-nav-text">Codis测试</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Redis-Cluster%E6%A8%A1%E5%BC%8F"><span class="toc-nav-number">4.3.</span> <span class="toc-nav-text">Redis Cluster模式</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E9%85%8D%E7%BD%AERedis-Cluster%E9%9B%86%E7%BE%A4"><span class="toc-nav-number">4.3.1.</span> <span class="toc-nav-text">配置Redis Cluster集群</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%85%AC%E6%9C%89%E4%BA%91Redis%E9%9B%86%E7%BE%A4"><span class="toc-nav-number">4.4.</span> <span class="toc-nav-text">公有云Redis集群</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">集群常见问题</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lettuce%E6%8B%93%E6%89%91%E5%88%B7%E6%96%B0%E9%97%AE%E9%A2%98"><span class="toc-nav-number">5.1.</span> <span class="toc-nav-text">Lettuce拓扑刷新问题</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Redis-Cluster%E6%89%A9%E7%BC%A9%E5%AE%B9"><span class="toc-nav-number">5.2.</span> <span class="toc-nav-text">Redis Cluster扩缩容</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%89%A9%E5%AE%B9"><span class="toc-nav-number">5.2.1.</span> <span class="toc-nav-text">扩容</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E7%BC%A9%E5%AE%B9"><span class="toc-nav-number">5.2.2.</span> <span class="toc-nav-text">缩容</span></a></li></ol></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+
+
+      <!-- Sidebar Container -->
+      <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+        <!-- Featured Tags -->
+        
+        <section>
+          <!-- no hr -->
+          <h5>
+            <a href="/tags/">特色标签</a>
+          </h5>
+          <div class="tags">
+            
+            <a class="tag" href="/tags/#Redis" title="Redis">Redis</a>
+            
+            <a class="tag" href="/tags/#Redis-Cluster" title="Redis-Cluster">Redis-Cluster</a>
+            
+            <a class="tag" href="/tags/#Codis" title="Codis">Codis</a>
+            
+            <a class="tag" href="/tags/#Sentinel" title="Sentinel">Sentinel</a>
+            
+          </div>
+        </section>
+        
+
+        <!-- Friends Blog -->
+        
+        <hr>
+        <h5>链友</h5>
+        <ul class="list-inline">
+
+          
+          <li>
+            <a href="https://coolshell.cn/" target="_blank">酷壳</a>
+          </li>
+          
+          <li>
+            <a href="https://hexo.io/" target="_blank">Hexo</a>
+          </li>
+          
+          <li>
+            <a href="http://www.ruanyifeng.com/home.html" target="_blank">阮一峰</a>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+<!-- anchorjs start -->
+<!-- async load function -->
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script type="text/javascript">
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function(e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  };
+</script>
+<script type="text/javascript">
+  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
+  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
+    anchors.options = {
+      visible: 'hover',
+      placement: 'left',
+      // icon: 'ℬ'
+      icon: '❡'
+    };
+    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+  });
+</script>
+<style>
+  /* place left on bigger screen */
+  @media all and (min-width: 800px) {
+    .anchorjs-link {
+      position: absolute;
+      left: -0.75em;
+      font-size: 1.1em;
+      margin-top: -0.1em;
+    }
+  }
+</style>
+
+<!-- anchorjs end -->
+
+
+
+		<!-- Footer (contains ThemeColor、viewer) -->
+		<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center">
+          
+
+          
+            <li>
+              <a target="_blank" href="https://github.com/shosky">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+
+        </ul>
+        <p class="copyright text-muted">
+          Copyright &copy;
+          Leo
+          2021
+          </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a id="rocket" href="#top" class=""></a>
+
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  <!-- Custom Theme JavaScript -->
+  <script type="text/javascript" src="/js/hux-blog.min.js"></script>
+  <!-- catalog -->
+  <script async="true" type="text/javascript" src="/js/catalog.js"></script>
+  <!-- totop(rocket) -->
+  <script async="true" type="text/javascript" src="/js/totop.js"></script>
+
+  
+
+  
+    <!-- Scroll start -->
+    <script async="async" type="text/javascript" src="/js/scroll.js"></script>
+    <!-- Scroll end -->
+  
+
+  
+
+  
+    <!-- Mouseclick -->
+    <script type="text/javascript" src="/js/mouseclick.js" content='' color=''></script>
+  
+
+  
+
+  
+
+
+
+
+
+
+  <!-- viewer start -->
+  <!-- viewer start (Picture preview) -->
+  
+    <script async="async" type="text/javascript" src="/js/viewer/viewer.min.js"></script>
+    <script async="async" type="text/javascript" src="/js/viewer/pic-viewer.js"></script>
+  
+
+  <!-- viewer end -->
+
+
+<script>
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function (e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  // fastClick.js
+  async ("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function () {
+    var $nav = document.querySelector("nav");
+    if ($nav)
+      FastClick.attach($nav);
+    }
+  )
+</script>
+
+<!-- Because of the native support for backtick-style fenced code blocks right within the Markdown is landed in Github Pages, From V1.6, There is no need for Highlight.js, so Huxblog drops it officially. -
+https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0 - https://help.github.com/articles/creating-and-highlighting-code-blocks/ -->
+<!-- <script> async ("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function () { hljs.initHighlightingOnLoad(); }) </script> <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet"> -->
+
+<!-- jquery.tagcloud.js -->
+<!-- <script> // only load tagcloud.js in tag.html if ($('#tag_cloud').length !== 0) { async ("https://qgmzhn.com/js/jquery.tagcloud.js", function () { $.fn.tagcloud.defaults = { // size: { start: 1, end: 1, unit: 'em' }, color: {
+start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </script> -->
+
+
+		<!-- Search -->
+		
+		<div class="popup search-popup local-search-popup">
+  <span class="popup-btn-close">
+    ESC
+  </span>
+  <div class="container">
+    <div class="row">
+      <!-- <div class="col-md-9 col-md-offset-1"> -->
+      <div class="col-lg-9 col-lg-offset-1 col-md-10 col-md-offset-1 local-search-content">
+
+        <div class="local-search-header clearfix">
+
+          <div class="local-search-input-wrapper">
+            <span class="search-icon">
+              <i class="fa fa-search fa-lg" style="margin: 25px 10px 25px 20px;"></i>
+            </span>
+            <input autocomplete="off" placeholder="搜索..." type="text" id="local-search-input">
+          </div>
+        </div>
+        <div id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+    <script src="/js/ziploader.js"></script>
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    // monitor main search box;
+    var onPopupClose = function (e) {
+      $('.popup').fadeOut(300);
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $('.popup').fadeIn(300);
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+    // get search zip version
+    $.get('/searchVersion.json?t=' + (+new Date()), function (res) {
+      if (localStorage.getItem('searchVersion') !== res) {
+        localStorage.setItem('searchVersion', res);
+        initSearchJson();
+      }
+    });
+
+    function initSearchJson() {
+      initLoad(['/search.flv'], {
+        loadOptions: {
+          success: function (obj) {
+            localStorage.setItem('searchJson', obj['search.json'])
+          },
+          error: function (e) {
+            return console.log(e)
+          }
+        },
+        returnOptions: {
+          'json': TYPE_TEXT
+        },
+        mimeOptions: {
+          'json': 'application/json'
+        }
+      })
+    }
+    // search function;
+    var searchFunc = function (search_id, content_id) {
+      'use strict';
+      isfetched = true;
+      var datas = JSON.parse(localStorage.getItem('searchJson'));
+      // console.log(search_id)
+      var input = document.getElementById(search_id);
+      var resultContent = document.getElementById(content_id);
+      var inputEventFunction = function () {
+        var searchText = input.value.trim().toLowerCase();
+        var keywords = searchText.split(/[\s\-]+/);
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        var resultItems = [];
+        if (searchText.length > 0) {
+          // perform local searching
+          datas.forEach(function (data) {
+            var isMatch = false;
+            var hitCount = 0;
+            var searchTextCount = 0;
+            var title = data.title
+              ? data.title.trim()
+              : '';
+            var titleInLowerCase = title.toLowerCase();
+            var content = data.content
+              ? data.content.trim().replace(/<[^>]+>/g, "")
+              : '';
+            var contentInLowerCase = content.toLowerCase();
+            var articleUrl = decodeURIComponent(data.url);
+
+            var date = data.date;
+            var dateTime = date.replace(/T/, " ").replace(/.000Z/, "");
+            var imgUrl = data.header_img;
+            
+
+
+            var indexOfTitle = [];
+            var indexOfContent = [];
+            // only match articles with not empty titles
+            keywords.forEach(function (keyword) {
+              function getIndexByWord(word, text, caseSensitive) {
+                var wordLen = word.length;
+                if (wordLen === 0) {
+                  return [];
+                }
+                var startPosition = 0,
+                  position = [],
+                  index = [];
+                if (!caseSensitive) {
+                  text = text.toLowerCase();
+                  word = word.toLowerCase();
+                }
+                while ((position = text.indexOf(word, startPosition)) > -1) {
+                  index.push({position: position, word: word});
+                  startPosition = position + wordLen;
+                }
+                return index;
+              }
+              indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+              indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+            });
+            if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+              isMatch = true;
+              hitCount = indexOfTitle.length + indexOfContent.length;
+            }
+            // show search results
+            if (isMatch) {
+              // sort index by position of keyword
+              [indexOfTitle, indexOfContent].forEach(function (index) {
+                index.sort(function (itemLeft, itemRight) {
+                  if (itemRight.position !== itemLeft.position) {
+                    return itemRight.position - itemLeft.position;
+                  } else {
+                    return itemLeft.word.length - itemRight.word.length;
+                  }
+                });
+              });
+              // merge hits into slices
+              function mergeIntoSlice(text, start, end, index) {
+                var item = index[index.length - 1];
+                var position = item.position;
+                var word = item.word;
+                var hits = [];
+                var searchTextCountInSlice = 0;
+                while (position + word.length <= end && index.length != 0) {
+                  if (word === searchText) {
+                    searchTextCountInSlice++;
+                  }
+                  hits.push({position: position, length: word.length});
+                  var wordEnd = position + word.length;
+                  // move to next position of hit
+                  index.pop();
+                  while (index.length != 0) {
+                    item = index[index.length - 1];
+                    position = item.position;
+                    word = item.word;
+                    if (wordEnd > position) {
+                      index.pop();
+                    } else {
+                      break;
+                    }
+                  }
+                }
+                searchTextCount += searchTextCountInSlice;
+                return {hits: hits, start: start, end: end, searchTextCount: searchTextCountInSlice};
+              }
+              var slicesOfTitle = [];
+              if (indexOfTitle.length != 0) {
+                slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+              }
+              var slicesOfContent = [];
+              while (indexOfContent.length != 0) {
+                var item = indexOfContent[indexOfContent.length - 1];
+                var position = item.position;
+                var word = item.word;
+                // cut out 100 characters
+                var start = position - 20;
+                var end = position + 80;
+                if (start < 0) {
+                  start = 0;
+                }
+                if (end < position + word.length) {
+                  end = position + word.length;
+                }
+                if (end > content.length) {
+                  end = content.length;
+                }
+                slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+              }
+              // sort slices in content by search text's count and hits' count
+              slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                  return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                  return sliceRight.hits.length - sliceLeft.hits.length;
+                } else {
+                  return sliceLeft.start - sliceRight.start;
+                }
+              });
+              // select top N slices in content
+              var upperBound = parseInt('1');
+              if (upperBound >= 0) {
+                slicesOfContent = slicesOfContent.slice(0, upperBound);
+              }
+              // highlight title and content
+              function highlightKeyword(text, slice) {
+                var result = '';
+                var prevEnd = slice.start;
+                slice.hits.forEach(function (hit) {
+                  result += text.substring(prevEnd, hit.position);
+                  var end = hit.position + hit.length;
+                  result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                  prevEnd = end;
+                });
+                result += text.substring(prevEnd, slice.end);
+                return result;
+              }
+              var resultItem = '';
+
+              // if (slicesOfTitle.length != 0) {   resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>"; } else {   resultItem += "<li><a target='_blank' href='" +
+              // articleUrl + "' class='search-result-title'>" + title + "</a>"; } slicesOfContent.forEach(function (slice) {   resultItem += "<a target='_blank' href='" + articleUrl + "'><p class=\"search-result\">" + highlightKeyword(content, slice) +
+              // "...</p></a>"; }); resultItem += "</li>";
+
+              if (slicesOfTitle.length != 0) {
+                resultItem += "<a target='_blank' href='" + articleUrl + "' class='search-result'><div class='search-result-left'><div class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</div><time class='search-result-date'>" + dateTime + "</time>";
+              } else {
+                resultItem += "<a target='_blank' href='" + articleUrl + "' class='search-result'><div class='search-result-left'><div class='search-result-title'>" + title + "</div><time class='search-result-date'>" + dateTime + "</time>";
+              }
+              slicesOfContent.forEach(function (slice) {
+                resultItem += "<p class=\"search-result-content\">" + highlightKeyword(content, slice) + "...</p>";
+              });
+              resultItem += "</div><div class='search-result-right'><img class='media-image' src='" + imgUrl + "' width='64px' height='48px'></img></div></a>";
+
+              resultItems.push({item: resultItem, searchTextCount: searchTextCount, hitCount: hitCount, id: resultItems.length});
+            }
+          })
+        };
+
+        if (keywords.length === 1 && keywords[0] === "") {
+          resultContent.innerHTML = '<div id="no-result"></div>'
+        } else if (resultItems.length === 0) {
+          resultContent.innerHTML = '<div id="no-result"></div>'
+        } else {
+          resultItems.sort(function (resultLeft, resultRight) {
+            if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+              return resultRight.searchTextCount - resultLeft.searchTextCount;
+            } else if (resultLeft.hitCount !== resultRight.hitCount) {
+              return resultRight.hitCount - resultLeft.hitCount;
+            } else {
+              return resultRight.id - resultLeft.id;
+            }
+          });
+          var searchResultList = '<div class=\"search-result-list\">';
+          resultItems.forEach(function (result) {
+            searchResultList += result.item;
+          })
+          searchResultList += "</div>";
+          resultContent.innerHTML = searchResultList;
+        }
+      }
+      if ('auto' === 'auto') {
+        input.addEventListener('input', inputEventFunction);
+      } else {
+        $('.search-icon').click(inputEventFunction);
+        input.addEventListener('keypress', function (event) {
+          if (event.keyCode === 13) {
+            inputEventFunction();
+          }
+        });
+      }
+      // remove loading animation
+      $('body').css('overflow', '');
+      proceedsearch();
+    }
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function (e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc('local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function (e) {
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 && $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+
+    document.addEventListener('mouseup', (e) => {
+      var _con = document.querySelector(".local-search-content");
+      if (_con) {
+        if (!_con.contains(e.target)) {
+          onPopupClose();
+        }
+      }
+    });
+  </script>
+
+
+		
+	<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

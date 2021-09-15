@@ -106,10 +106,6 @@
     
 
     
-      <!-- ThemeColor start -->
-      <link rel="stylesheet" href="/css/themecolor.css"/>
-      <!-- ThemeColor end -->
-    
 
     
 
@@ -146,72 +142,13 @@
 
 <!-- hack iOS CSS :active style -->
 
-	<body ontouchstart="" class="body--light body--dark">
+	<body ontouchstart="" class="body--light">
 
 
 		<!-- ThemeColor -->
 		
-		<!-- ThemeColor -->
-<style type="text/css">
-  .body--light {
-    --light-mode: none;
-    --dark-mode: block;
-  }
-  .body--dark {
-    --light-mode: block;
-    --dark-mode: none;
-  }
-  i.mdui-icon.material-icons.light-mode {
-    display: var(--light-mode);
-  }
-  i.mdui-icon.material-icons.dark-mode {
-    display: var(--dark-mode);
-  }
-</style>
-<div class="toggle" onclick="document.body.classList.toggle('body--dark')">
-  <i class="mdui-icon material-icons light-mode"></i>
-  <i class="mdui-icon material-icons dark-mode"></i>
-</div>
-<script>
-  //getCookieValue
-  function getCookieValue(a) {
-    var b = document.cookie.match('(^|[^;]+)\\s*' + a + '\\s*=\\s*([^;]+)');
-    return b
-      ? b.pop()
-      : '';
-  }
-  let themeMode = 'dark';
-  if (getCookieValue('sb-color-mode') && (getCookieValue('sb-color-mode') !== themeMode)) {
-    let dbody = document.body.classList;
-    themeMode === 'dark' ? dbody.remove('body--dark') : dbody.add('body--dark');
-  }
-
-  //setCookieValue
-  var toggleBtn = document.querySelector(".toggle");
-  toggleBtn.addEventListener("click", function () {
-    var e = document.body.classList.contains("body--dark");
-    var cookieString = e
-      ? "dark"
-      : "light";
-    var exp = new Date();
-    exp.setTime(exp.getTime() + 3 * 24 * 60 * 60 * 1000); //3天过期
-    document.cookie = "sb-color-mode=" + cookieString + ";expires=" + exp.toGMTString() + ";path=/";
-  });
-</script>
-
-		
 
 		<!-- Gitter -->
-		
-		<!-- Gitter -->
-<!-- Docs:https://gitter.im/?utm_source=left-menu-logo -->
-<script>
-  ((window.gitter = {}).chat = {}).options = {
-    room: 'your-community/your-room'
-  };
-</script>
-<script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
-
 		
 
 		<!-- Navigation (contains search)-->
@@ -235,7 +172,7 @@
       <div class="navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="/">HOME</a>
+            <a href="/">首页</a>
           </li>
 
           
@@ -245,7 +182,7 @@
           <li>
             <a href="/about/">
               
-              ABOUT
+              关于
               
               
             </a>
@@ -256,7 +193,7 @@
           <li>
             <a href="/archive/">
               
-              ARCHIVES
+              归档
               
               
             </a>
@@ -267,7 +204,7 @@
           <li>
             <a href="/categories/">
               
-              CATEGORIES
+              分类
               
               
             </a>
@@ -278,7 +215,7 @@
           <li>
             <a href="/tags/">
               
-              TAGS
+              标签
               
               
             </a>
@@ -289,33 +226,11 @@
           
           <li>
             <a class="popup-trigger">
-              <span class="search-icon"></span>SEARCH</a>
+              <span class="search-icon"></span>搜索</a>
           </li>
           
 
           <!-- LangSelect -->
-          
-          
-          <!-- LangSelect start -->
-          <!-- LangSelect -->
-<li>
-  <a id="lang-select-label"><i class="fa fa-globe"></i>
-    <span>
-      English
-    </span>
-    <select id="lang-select" data-canonical="about/index.html">
-      
-      
-      <option value="cn" >
-        简体中文
-      </option>
-      
-    </select>
-  </a>
-</li>
-
-          <!-- LangSelect end -->
-          
           
         </ul>
       </div>
@@ -365,12 +280,12 @@
   <style type="text/css">
     .body--light {
       /* intro-header */
-      --intro-header-background-image-url-home: url('/http://qyi2eutqk.hn-bkt.clouddn.com/newhome_bg.jpg');
+      --intro-header-background-image-url-home: url('/https://cdn.wangxiaodu.com/morning.jpeg');
       --intro-header-background-image-url-post: url('img/scenery/about_bg.jpg');
       --intro-header-background-image-url-page: url('/img/scenery/about_bg.jpg');
     }
     .body--dark {
-      --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/http://qyi2eutqk.hn-bkt.clouddn.com/newhome_bg.jpg');
+      --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/https://cdn.wangxiaodu.com/morning.jpeg');
       --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('img/scenery/about_bg.jpg');
       --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/scenery/about_bg.jpg');
     }
@@ -403,7 +318,7 @@
           <div class="site-heading">
             <h1>About</h1>
             <!--<hr class="small">-->
-            <span class="subheading">修改About</span>
+            <span class="subheading">不随波逐流,不甘于平庸</span>
           </div>
           
         </div>
@@ -444,49 +359,13 @@
             ">
 
       <h2 id="Talk-To-Me">Talk To Me</h2>
-<blockquote>
-<p>I always say to myself :</p>
-<p>if my life is peaceful and plain sailing all the time ,</p>
-<p>it means to die in the electrocardiogram …</p>
-</blockquote>
 <h2 id="Just-Me">Just Me</h2>
-<p><img src="/img/scenery/about_bg2.jpg" width="350" alt="about_bg2"></img></p>
-<blockquote>
-<p>有一种状态 叫一个人 它总是挑战语言的贫乏 只能在某首歌中找寻灵感；</p>
-<p>有一种氨基酸 叫多巴胺 你不知道它何时会在你体内产生；</p>
-<p>有一种上瘾 叫抽烟 其实你抽的只是心情 又或是寂寞；</p>
-<p>有一种态度 叫纹身 其实我们只是想与众不同；</p>
-<p>有一种经历 叫旅行 年轻只有一次 不出去走走 或许以为眼前的就是世界；</p>
-<p>有一种人生 叫心电图 如果你总是一帆风顺 那么你就挂了；</p>
-<p>有一种悠闲 叫 &quot; 老板给我杯Cappuccino &quot; 香香甜甜 浓郁中带着苦涩 醇和而隽永 …</p>
-</blockquote>
 <h2 id="The-Longest-Way-…">The Longest Way …</h2>
-<p><img src="/img/scenery/about_bg4.jpg" width="350" alt="about_bg4"></img></p>
-<blockquote>
-<p>活在当下 然后忘记 继续往前走 …</p>
-<p>即便是一个人 …</p>
-<p>On the way to meet myself …</p>
-</blockquote>
 <h2 id="Follow-With-Interest-Blogs">Follow With Interest Blogs</h2>
-<blockquote>
-<p>Neo Peng：<a target="_blank" rel="noopener" href="https://zhile.io">https://zhile.io</a></p>
-<p>李卫民：<a target="_blank" rel="noopener" href="https://www.funtl.com/zh/guide">https://www.funtl.com/zh/guide</a></p>
-<p>duanxz：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/duanxz/tag">https://www.cnblogs.com/duanxz/tag</a></p>
-<p>Java1234_小锋：<a target="_blank" rel="noopener" href="http://blog.java1234.com/index.html">http://blog.java1234.com/index.html</a></p>
-<p>Deserts：<a target="_blank" rel="noopener" href="https://deserts.io">https://deserts.io</a></p>
-<p>Super Snail：<a target="_blank" rel="noopener" href="https://www.dusign.net">https://www.dusign.net</a></p>
-<p>KIERAN’S BLOG：<a target="_blank" rel="noopener" href="https://go.kieran.top">https://go.kieran.top</a></p>
-<p>Mr.Seven：<a target="_blank" rel="noopener" href="https://itimetraveler.github.io">https://itimetraveler.github.io</a></p>
-</blockquote>
 <h2 id="Contact-me">Contact me</h2>
 <blockquote>
-<p>Email：601521821@qq.com</p>
+<p>Email：wx5753@gmail.com</p>
 </blockquote>
-<h2 id="Treat-me-to-coffee">Treat me to coffee</h2>
-<blockquote>
-<p>If you feel that what I have written is of some value to you, I am glad that you are willing to invite me to drink coffee…</p>
-</blockquote>
-<p><img src="/img/scenery/treat_me_to_coffee.png" width="350" alt="treat_me_to_coffee.png"></img></p>
 
 
       <!-- 如果开启评论功能 -->
@@ -509,17 +388,7 @@
 ">
     
         <!-- Visitors -->
-<h5><a href="/">VISITORS</a></h5>
-
-<div class="widget">
-  <span>
-    Viewed <b><i><span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span></i></b> Times
-  </span>
-  <br />
-  <span>
-    <b><i><span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span></i></b> Visitors In Total
-  </span>
-</div>
+<h5><a href="/">来访者</a></h5>
 
 
         <hr>
@@ -527,11 +396,23 @@
         <!-- Featured Tags -->
 
 <section>
-  <h5><a href="/tags/">FEATURED TAGS</a></h5>
+  <h5><a href="/tags/">特色标签</a></h5>
   <div class="tags">
     
     
-    <a href="/tags/#Hexo-Theme-LiveMyLife" title="Hexo-Theme-LiveMyLife" rel="2">Hexo-Theme-LiveMyLife</a>
+    <a href="/tags/#Redis" title="Redis" rel="1">Redis</a>
+    
+    
+    
+    <a href="/tags/#Redis-Cluster" title="Redis-Cluster" rel="1">Redis-Cluster</a>
+    
+    
+    
+    <a href="/tags/#Codis" title="Codis" rel="1">Codis</a>
+    
+    
+    
+    <a href="/tags/#Sentinel" title="Sentinel" rel="1">Sentinel</a>
     
     
   </div>
@@ -542,7 +423,7 @@
     
         <!-- Short About -->
 <section class="visible-md visible-lg">
-  <h5><a href="/about/">ABOUT ME</a></h5>
+  <h5><a href="/about/">关于自己</a></h5>
   <div class="short-about">
 
     
@@ -581,15 +462,6 @@
       
 
       
-      <li>
-        <a target="_blank" href="http://weibo.com/shosky">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-          </span>
-        </a>
-      </li>
-      
 
     </ul>
   </div>
@@ -599,16 +471,12 @@
     
         <!-- RECENT POSTS -->
 
-<h5><a href="/">RECENT POSTS</a></h5>
+<h5><a href="/">最近博文</a></h5>
 <div class="widget">
   <ul>
     
-    <a href="../en/Hexo-Theme-LiveMyLife/">
-      <li>Hexo-Theme-LiveMyLife</li>
-    </a>
-    
-    <a href="../cn/Hexo-Theme-LiveMyLife/">
-      <li>Hexo-Theme-LiveMyLife</li>
+    <a href="../cn/redis-cluster/">
+      <li>手把手教你搭建Redis集群</li>
     </a>
     
   </ul>
@@ -619,7 +487,7 @@
     
         <!-- Friends Blog -->
 
-<h5><a href="/">FRIENDS</a></h5>
+<h5><a href="/">链友</a></h5>
 <ul class="list-inline">
   
   <li><a href="https://coolshell.cn/" target="_blank">酷壳</a></li>
@@ -637,7 +505,7 @@
 
 <h5><a href="/archives/">archives</a></h5>
 <div class="widget">
-  <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2020/04/">April 2020</a><span class="archive-list-count">2</span></li></ul>
+  <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li></ul>
 </div>
 
 
@@ -649,8 +517,8 @@
 <div class="widget">
   <ul>
     
-    <a href="/categories/#Hexo-Theme-LiveMyLife">
-      <li>Hexo-Theme-LiveMyLife</li>
+    <a href="/categories/#Redis">
+      <li>Redis</li>
     </a>
     
   </ul>
@@ -698,32 +566,13 @@
           
 
           
-            <li>
-              <a target="_blank" href="http://weibo.com/shosky">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-          
 
         </ul>
         <p class="copyright text-muted">
           Copyright &copy;
-          Mr.Leo
+          Leo
           2021
-          <br>
-          Theme by
-          <a target="_blank" rel="noopener" href="http://beantech.org">BeanTech</a>
-          <span style="display: inline-block; margin: 0 5px;">
-            <i class="fa fa-heart"></i>
-          </span>
-          re-Ported by
-          <a target="_blank" rel="noopener" href="https://v-vincen.life/">Live My Life</a>
-          |
-          <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=V-Vincen&repo=V-Vincen.github.io&type=star&count=true"></iframe>
-        </p>
+          </p>
       </div>
     </div>
   </div>
@@ -744,9 +593,6 @@
   <script async="true" type="text/javascript" src="/js/totop.js"></script>
 
   
-    <!-- Busuanzi JavaScript -->
-    <script async="async" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  
 
   
     <!-- Scroll start -->
@@ -755,14 +601,10 @@
   
 
   
-    <!-- LangSelect start -->
-    <script type="text/javascript" src="/js/langselect.js"></script>
-    <!-- LangSelect end -->
-  
 
   
     <!-- Mouseclick -->
-    <script type="text/javascript" src="/js/mouseclick.js" content='The first step is as good as half over...,Laugh and grow fat...,Man proposes God disposes...,When all else is lost the future still remains...,Wasting time is robbing oneself...,Sharp tools make good work...,Cease to struggle and you cease to live...,A friend in need is a friend indeed...,Faith can move mountains...' color='#9933CC,#339933,#66CCCC,#FF99CC,#CCCCFF,#6666CC,#663399,#66CC99,#FF0033'></script>
+    <script type="text/javascript" src="/js/mouseclick.js" content='' color=''></script>
   
 
   
@@ -835,7 +677,7 @@ start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </scrip
             <span class="search-icon">
               <i class="fa fa-search fa-lg" style="margin: 25px 10px 25px 20px;"></i>
             </span>
-            <input autocomplete="off" placeholder="SEARCH..." type="text" id="local-search-input">
+            <input autocomplete="off" placeholder="搜索..." type="text" id="local-search-input">
           </div>
         </div>
         <div id="local-search-result"></div>
